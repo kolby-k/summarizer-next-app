@@ -28,7 +28,7 @@ export default async function RootLayout({
 }>) {
   const session = await getSession();
   const safeSession = session
-    ? { username: session.username, createdTime: session.createdTime }
+    ? { ip: session.ip, createdTime: session.createdTime }
     : null;
 
   return (

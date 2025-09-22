@@ -1,11 +1,7 @@
 import { getClientIp } from "@/lib/getClientIp";
 import { login } from "@/services/login";
-import { env } from "../../../env";
 import { ZodError } from "zod";
 import { type NextRequest, NextResponse } from "next/server";
-
-const SESSION_TTL_SECONDS = 60 * 60 * 1; // 1 hour
-const COOKIE_NAME = "sid";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -64,13 +60,13 @@ export async function POST(req: NextRequest) {
 
   // success response
   const res = NextResponse.json({ success: true });
-  res.cookies.set(COOKIE_NAME, result.sessionId, {
+  res.cookies.set("sid", result.sessionId, {
     httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     path: "/",
-    maxAge: SESSION_TTL_SECONDS,
-    domain: env.COOKIE_DOMAIN ?? undefined,
+    maxAge: parseInt(process.env.SESSION_TTL_SECONDS ?? "600"),
+    domain: process.env.COOKIE_DOMAIN ?? undefined,
   });
 
   return res;

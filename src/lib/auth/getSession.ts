@@ -1,17 +1,23 @@
 // lib/auth/getSession.ts (server-only)
 import type { Session } from "@/context/sessionContext";
 import { cookies } from "next/headers";
-//import { db } from "@/lib/db";
+import { redis } from "@/lib/redis";
+import type { SessionData } from "./createSession";
 
 export async function getSession(): Promise<Session> {
   const cookieStore = await cookies();
   const sid = cookieStore.get("sid")?.value;
   if (!sid) return null;
+  const redisKey = `sess:${sid}`;
 
   // Lookup in your session store (Redis/DB)
-  //const session = await db.session.findUnique({ where: { id: sid } });
-  //return session && session.expiresAt > new Date() ? session : null;
+  const session = await redis.get<SessionData>(redisKey);
 
-  const session = { username: "demo", createdTime: new Date().toISOString() };
-  return session;
+  return session &&
+    new Date(
+      session.createdTime +
+        parseInt(process.env?.SESSION_TTL_SECONDS ?? "600") * 1000
+    ) > new Date()
+    ? session
+    : null;
 }

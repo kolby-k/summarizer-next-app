@@ -18,15 +18,15 @@ export default function SignIn() {
     if (!password) return setError("No password Provided...");
 
     const payload = { username, password };
-    setError(null);
+    if (session) setError(null);
     setLoading(true);
     const res = await fetch("/api/auth", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
-    console.log(res);
     const data = await res.json();
+    console.log("login response", data);
     setLoading(false);
     if (!res.ok) {
       try {

@@ -1,8 +1,9 @@
 import { randomUUID } from "crypto";
+import { redis } from "@/lib/redis";
 
-type SessionData = {
+export type SessionData = {
   ip: string;
-  createdAt: number;
+  createdTime: number;
 };
 
 export async function createSession(ip: string) {
@@ -11,13 +12,12 @@ export async function createSession(ip: string) {
 
   const data: SessionData = {
     ip,
-    createdAt: Date.now(),
+    createdTime: Date.now(),
   };
 
-  // TODO: setup redis
-  //await redis.set(key, JSON.stringify(data), { EX: SESSION_TTL_SECONDS });
-  console.log("TODO: STORE SESSIN IN REDIS: ", key);
-  console.log("REDIS VALUE: ", data);
+  await redis.set(key, JSON.stringify(data), {
+    ex: parseInt(process.env.SESSION_TTL_SECONDS ?? "600"),
+  });
 
   return id;
 }

@@ -1,11 +1,9 @@
 "use client";
 
+import { SessionData } from "@/lib/auth/createSession";
 import { createContext, useContext, useState } from "react";
 
-export type Session = {
-  username: string;
-  createdTime: string;
-} | null;
+export type Session = SessionData | null;
 
 const SessionContext = createContext<{
   session: Session;

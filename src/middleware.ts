@@ -14,7 +14,10 @@ export function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  const isAuth = req.cookies.get("sid")?.value;
+  const cookie = req.cookies.get("sid");
+  console.log("cookie: ", cookie);
+  const isAuth = cookie?.value;
+  console.log("Is Auth: ", isAuth);
   if (!isAuth) {
     const url = req.nextUrl.clone();
     url.pathname = "/sign-in";
