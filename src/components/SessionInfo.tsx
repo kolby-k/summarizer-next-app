@@ -1,22 +1,22 @@
-import { getSession } from "@/lib/auth/getSession";
+import { getSession } from "@/lib/session/getSession";
+import LogoutButton from "./LogoutButton";
 
 export default async function SessionInfo() {
   const session = await getSession();
-  const iso = session?.createdTime ?? null;
-  const display = iso ? new Date(iso).toLocaleString() : "Unknown...";
+  if (!session) return null;
+  // createdTime -> Unix Epoch MS
+  const display = new Date(session.createdTime * 1000).toLocaleString();
 
   return (
     <div>
       Current Session Info:
-      <p>Ip Address: {session?.ip ?? "—"}</p>
       <p>
-        Session Created:{" "}
-        {iso && (
-          <time dateTime={display} suppressHydrationWarning>
-            {display}
-          </time>
-        )}
+        Session Created:
+        <time dateTime={display} suppressHydrationWarning>
+          {display}
+        </time>
       </p>
+      <LogoutButton />
     </div>
   );
 }

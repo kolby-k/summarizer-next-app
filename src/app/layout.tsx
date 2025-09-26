@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
 import SessionProvider from "@/context/sessionContext";
-import { getSession } from "@/lib/auth/getSession";
+import { getSession } from "@/lib/session/getSession";
 import SessionInfo from "@/components/SessionInfo";
 
 const geistSans = Geist({
@@ -27,9 +27,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getSession();
-  const safeSession = session
-    ? { ip: session.ip, createdTime: session.createdTime }
-    : null;
+  const safeSession = session ? { ...session } : null;
 
   return (
     <html lang="en">

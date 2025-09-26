@@ -1,11 +1,12 @@
-import { createSession } from "@/lib/auth/createSession";
+import { createSession } from "@/lib/session/createSession";
 import { LoginSchema } from "@/lib/validators";
 import type { UUID } from "crypto";
 
-export async function login(
-  input: unknown,
-  ipAddress: string
-): Promise<{ ok: boolean; message: string; sessionId: UUID | null }> {
+type LoginResult =
+  | { ok: true; message: string; sessionId: UUID }
+  | { ok: false; message: string };
+
+export async function login(input: unknown): Promise<LoginResult> {
   const { username, password } = LoginSchema.parse(input);
 
   // only allow the username 'demo'
@@ -13,7 +14,6 @@ export async function login(
     return {
       ok: false as const,
       message: "incorrect username",
-      sessionId: null,
     };
 
   // only allow the password 'test1234'
@@ -21,11 +21,10 @@ export async function login(
     return {
       ok: false as const,
       message: "incorrect password",
-      sessionId: null,
     };
 
   // create sessionId when login is successful
-  const sessionId = await createSession(ipAddress);
+  const sessionId = await createSession();
 
   return {
     ok: true as const,

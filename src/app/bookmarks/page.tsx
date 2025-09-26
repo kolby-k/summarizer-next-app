@@ -1,4 +1,4 @@
-import { getSession } from "@/lib/auth/getSession";
+import { getSession } from "@/lib/session/getSession";
 
 export default async function Bookmarks() {
   const session = await getSession();

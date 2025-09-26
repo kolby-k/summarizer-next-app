@@ -1,6 +1,5 @@
 "use client";
 
-import { useSession } from "@/context/sessionContext";
 import { useState } from "react";
 import type { ChangeEvent } from "react";
 
@@ -11,14 +10,12 @@ export default function SignIn() {
   const [username, setUsername] = useState<null | string>(null);
   const [password, setPassword] = useState<null | string>(null);
 
-  const { session, setSession } = useSession();
-
   async function handleSignIn() {
     if (!username) return setError("No username Provided...");
     if (!password) return setError("No password Provided...");
 
     const payload = { username, password };
-    if (session) setError(null);
+    setError(null);
     setLoading(true);
     const res = await fetch("/api/auth", {
       method: "POST",
@@ -36,7 +33,6 @@ export default function SignIn() {
       }
     }
 
-    setSession({ ...data });
     window.location.assign("/summarize");
   }
 
