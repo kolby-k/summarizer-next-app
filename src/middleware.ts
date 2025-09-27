@@ -1,34 +1,54 @@
-// middleware.ts (root or src/)
 import { NextResponse, type NextRequest } from "next/server";
+import { redis } from "@/lib/redis";
+import isUUID from "@/utils/isUUID";
 
-export function middleware(req: NextRequest) {
+const SESSION_TTL_SECONDS = Number(process.env.SESSION_TTL_SECONDS ?? 600);
+
+export async function middleware(req: NextRequest) {
   const { pathname, search } = req.nextUrl;
-  console.log("Middlware", pathname + " > " + search);
-  // allow the sign-in page and auth endpoints
-  if (pathname.startsWith("/sign-in") || pathname.startsWith("/api/auth")) {
+  const isApi = pathname.startsWith("/api/");
+  const sid = req.cookies.get("sid")?.value ?? null;
+
+  // Allow root, login, and auth endpoints
+  if (
+    pathname === "/" ||
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/api/auth")
+  ) {
     return NextResponse.next();
   }
 
-  // (Optional) let all API routes through; handle API auth inside the handler
-  if (pathname.startsWith("/api/")) {
-    return NextResponse.next();
-  }
+  // --- API branch: you're not guarding APIs here ---
+  if (isApi) return NextResponse.next();
 
-  const cookie = req.cookies.get("sid");
-  console.log("cookie: ", cookie);
-  const isAuth = cookie?.value;
-  console.log("Is Auth: ", isAuth);
-  if (!isAuth) {
+  // --- Page branch (non-API) ---
+  if (!sid || !isUUID(sid)) {
     const url = req.nextUrl.clone();
-    url.pathname = "/sign-in";
-    url.searchParams.set("next", pathname); // e.g. /dashboard?tab=a
+    url.pathname = "/login";
+    url.searchParams.set("next", pathname + search);
     return NextResponse.redirect(url);
+  }
+
+  // 1) Auth by Redis existence (+ rolling TTL)
+  const key = `sess:${sid}`;
+  const p = redis.pipeline();
+  p.exists(key);
+  p.expire(key, SESSION_TTL_SECONDS); // optional rolling TTL
+  const [exists] = await p.exec<number[]>();
+
+  if (!exists) {
+    const url = req.nextUrl.clone();
+    url.pathname = "/login";
+    url.searchParams.set("next", pathname + search);
+    const res = NextResponse.redirect(url);
+    res.cookies.set("sid", "", { path: "/", maxAge: 0, httpOnly: true });
+    return res;
   }
 
   return NextResponse.next();
 }
 
-// Exclude Next.js internals & static files by default
+// Run on everything except login and Next internals
 export const config = {
-  matcher: ["/summarize/:path*", "/bookmarks/:path*"],
+  matcher: ["/((?!login|_next/static|_next/image|favicon.ico).*)"],
 };

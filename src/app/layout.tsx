@@ -3,8 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
 import SessionProvider from "@/context/sessionContext";
-import { getSession } from "@/lib/session/getSession";
+import { getSession } from "@/lib/session";
 import SessionInfo from "@/components/SessionInfo";
+import { SummaryProvider } from "@/context/SummarizeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,9 +36,11 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SessionProvider initialSession={safeSession}>
-          <Header />
-          <SessionInfo />
-          {children}
+          <SummaryProvider>
+            <Header />
+            <SessionInfo />
+            {children}
+          </SummaryProvider>
         </SessionProvider>
       </body>
     </html>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { ChangeEvent } from "react";
 
-export default function SignIn() {
+export default function Login() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<null | string>(null);
 
@@ -17,13 +17,13 @@ export default function SignIn() {
     const payload = { username, password };
     setError(null);
     setLoading(true);
-    const res = await fetch("/api/auth", {
+    const res = await fetch("/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
     const data = await res.json();
-    console.log("login response", data);
+
     setLoading(false);
     if (!res.ok) {
       try {

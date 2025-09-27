@@ -1,4 +1,4 @@
-import { getSession } from "@/lib/session/getSession";
+import { getSession } from "@/lib/session";
 import LogoutButton from "./LogoutButton";
 
 export default async function SessionInfo() {
