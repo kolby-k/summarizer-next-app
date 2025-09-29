@@ -10,7 +10,6 @@ export default async function Bookmarks() {
         Review a list of bookmarks
       </h1>
       <p>{JSON.stringify(session, null, 3)}</p>
-
       <BookmarkList />
     </div>
   );

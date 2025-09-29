@@ -1,27 +1,33 @@
 import type { Summary } from "@/context/SummarizeContext";
+import openAIFetch from "@/lib/openai";
 import { randomUUID } from "crypto";
 
 async function handleNewArticleSummary(url: string): Promise<Summary | null> {
-  // get html for url provided
+  const userPrompt = `
+  You are a professional summarizer. Given the full text of this online article, 
+  write a concise summary that captures the key points, main argument, and relevant facts; 
+  determine if there is a bias or not in the original article; 
+  and create a title for the article: 
+  ${url}`;
 
-  // extract all text to remove html
-
-  // or, send html to open ai for summary generation (summary and bias)
-  const openAIResponse = {
-    success: true,
-    data: {
-      title: "Sample title",
-      summary: "This is a sample summary.",
-      bias: "this is a sample bias.",
-    },
-  };
-
-  const id = randomUUID();
-  const now = Date.now();
-
-  return openAIResponse.success
-    ? { ...openAIResponse.data, id, url, createdAt: now }
-    : null;
+  const openAIResponse = await openAIFetch({
+    endpoint: "https://api.openai.com/v1/responses",
+    userPrompt,
+  });
+  if (openAIResponse.success) {
+    const id = randomUUID();
+    const now = Date.now();
+    return {
+      summary: openAIResponse.data.summary,
+      bias: openAIResponse.data.bias,
+      title: openAIResponse.data.title,
+      id,
+      url,
+      createdAt: now,
+    };
+  } else {
+    return null;
+  }
 }
 
 export default handleNewArticleSummary;

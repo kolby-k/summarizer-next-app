@@ -15,10 +15,10 @@ import { getItem, setItem } from "@/lib/storage";
 export type Summary = {
   id: string;
   url: string;
-  title?: string;
+  title: string;
   summary: string;
   bias: string;
-  createdAt?: number;
+  createdAt: number;
 };
 
 type State = {

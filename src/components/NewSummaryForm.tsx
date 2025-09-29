@@ -72,10 +72,8 @@ export default function NewSummaryForm() {
       ) : null}
 
       {currentSummary && (
-        <div className="h-100 bg-green-500 relative">
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-            <SummaryCard data={currentSummary} />
-          </div>
+        <div className="m-2 md:m-auto md:w-2/3 mx-auto bg-neutral-600 p-2">
+          <SummaryCard data={currentSummary} />
         </div>
       )}
     </>

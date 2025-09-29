@@ -7,7 +7,7 @@ function BookmarkList() {
   const { bookmarks } = useSummaries();
 
   return (
-    <div className="flex flex-1 flex-wrap justify-evenly items-start gap-4 pt-4">
+    <div className="pt-4 grid-cols-2 grid gap-4 auto-rows-fr">
       {bookmarks &&
         bookmarks.map((b) => {
           return <SummaryCard key={b.id} data={b} />;
