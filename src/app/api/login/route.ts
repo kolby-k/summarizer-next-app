@@ -1,4 +1,4 @@
-import { createSession } from "@/lib/session";
+import { createSession, getSession } from "@/lib/session";
 import { LoginSchema } from "@/lib/validators";
 import { authGate } from "@/utils/authGate";
 import { type NextRequest, NextResponse } from "next/server";
@@ -28,11 +28,11 @@ export async function POST(req: NextRequest) {
   }
 
   // initalize a new session for cookie response
-  const sessionId = await createSession();
+  const session = await createSession();
 
   // success
-  const res = NextResponse.json({ success: true });
-  res.cookies.set("sid", sessionId, {
+  const res = NextResponse.json({ success: true, session });
+  res.cookies.set("sid", session.sessionId, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",

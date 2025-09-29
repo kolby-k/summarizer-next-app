@@ -1,8 +1,10 @@
-import { getSession } from "@/lib/session";
-import LogoutButton from "./LogoutButton";
+"use client";
 
-export default async function SessionInfo() {
-  const session = await getSession();
+import LogoutButton from "./LogoutButton";
+import { useSession } from "@/context/sessionContext";
+
+export default function SessionInfo() {
+  const { session } = useSession();
   if (!session) return null;
   // createdTime -> Unix Epoch MS
   const display = new Date(session.createdTime * 1000).toLocaleString();

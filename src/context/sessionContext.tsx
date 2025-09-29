@@ -1,7 +1,7 @@
 "use client";
 
-import { SessionData } from "@/lib/session/createSession";
-import { createContext, useContext, useState } from "react";
+import { SessionData } from "@/lib/session";
+import { createContext, useContext, useMemo, useState } from "react";
 
 export type Session = SessionData | null;
 
@@ -18,12 +18,16 @@ export default function SessionProvider({
   children: React.ReactNode;
 }) {
   const [session, setSession] = useState<Session>(initialSession);
+  const value = useMemo(() => ({ session, setSession }), [session]);
 
   return (
-    <SessionContext.Provider value={{ session, setSession }}>
-      {children}
-    </SessionContext.Provider>
+    <SessionContext.Provider value={value}>{children}</SessionContext.Provider>
   );
 }
 
-export const useSession = () => useContext(SessionContext);
+export function useSession() {
+  const ctx = useContext(SessionContext);
+  if (!ctx)
+    throw new Error("useSession must be used within <SessionProvider />");
+  return ctx;
+}

@@ -1,9 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import type { ChangeEvent } from "react";
+import { useSession } from "@/context/sessionContext";
+import { useRouter } from "next/navigation";
+import { useEffect, useLayoutEffect, useState } from "react";
 
 export default function Login() {
+  const router = useRouter();
+  // auto-redirect if session is valid
+  const { session, setSession } = useSession();
+
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<null | string>(null);
 
@@ -19,7 +24,11 @@ export default function Login() {
     setLoading(true);
     const res = await fetch("/api/login", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        credentials: "same-origin",
+        cache: "no-store",
+      },
       body: JSON.stringify(payload),
     });
     const data = await res.json();
@@ -33,8 +42,18 @@ export default function Login() {
       }
     }
 
-    window.location.assign("/summarize");
+    console.log("DATA: ", data);
+    setSession({ ...data.session });
+    router.replace("/summarize");
   }
+
+  useLayoutEffect(() => {
+    if (session) {
+      router.replace("/summarize");
+    }
+  }, [session]);
+
+  if (session) return null;
 
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
@@ -47,21 +66,20 @@ export default function Login() {
         id="username"
         name="username"
         value={username || ""}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => {
-          setUsername(e.target.value);
-        }}
+        onChange={(e) => setUsername(e.target.value)}
         className="bg-slate-200 text-black pl-2"
         placeholder="username"
+        disabled={loading}
       />
       <input
         id="password"
         name="password"
         value={password || ""}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => {
-          setPassword(e.target.value);
-        }}
+        onChange={(e) => setPassword(e.target.value)}
         className="bg-slate-200 text-black pl-2"
         placeholder="password"
+        type="password"
+        disabled={loading}
       />
       <button
         onClick={handleSignIn}

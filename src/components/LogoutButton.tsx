@@ -1,12 +1,21 @@
 "use client";
 
+import { useSession } from "@/context/sessionContext";
+import { useRouter } from "next/navigation";
+
 function LogoutButton() {
+  const router = useRouter();
+
+  const { setSession } = useSession();
+
   const handleLogout = async () => {
     await fetch("/api/logout", {
       method: "POST",
     });
 
-    window.location.assign("/");
+    setSession(null);
+
+    router.replace("/");
   };
 
   return (
