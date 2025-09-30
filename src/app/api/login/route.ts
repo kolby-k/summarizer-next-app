@@ -38,7 +38,6 @@ export async function POST(req: NextRequest) {
     sameSite: "lax",
     path: "/",
     maxAge: SESSION_TTL_SECONDS,
-    domain: process.env.COOKIE_DOMAIN ?? undefined,
   });
 
   return res;
