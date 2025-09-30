@@ -7,7 +7,7 @@ export interface SummaryCardProps {
 }
 
 function SummaryCard({ data }: SummaryCardProps) {
-  const { url, summary, bias, id, title } = data;
+  const { summary, id, title } = data;
 
   const { bookmarks, addBookmark, removeBookmark } = useSummaries();
   const isBookmarked = bookmarks.filter((b) => b.id === id).length === 1;

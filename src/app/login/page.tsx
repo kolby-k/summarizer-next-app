@@ -3,7 +3,7 @@
 import TitleSection from "../../components/TitleSection";
 import { useSession } from "../../context/sessionContext";
 import { useRouter } from "next/navigation";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 export default function Login() {
   const router = useRouter();
@@ -39,6 +39,7 @@ export default function Login() {
       try {
         return setError(data.message);
       } catch (e) {
+        console.error(e);
         return setError("Unknown Error...");
       }
     }
@@ -52,7 +53,7 @@ export default function Login() {
     if (session) {
       router.replace("/summarize");
     }
-  }, [session]);
+  }, [session, router]);
 
   if (session) return null;
 

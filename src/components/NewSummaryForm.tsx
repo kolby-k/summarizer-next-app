@@ -37,7 +37,7 @@ export default function NewSummaryForm() {
       setCurrentSummary(state.data);
       formRef.current?.reset();
     }
-  }, [state]);
+  }, [state, setCurrentSummary]);
 
   return (
     <div className="flex flex-col">

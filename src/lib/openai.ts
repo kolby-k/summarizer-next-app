@@ -63,7 +63,6 @@ async function openAIFetch({
   };
 
   let data;
-  let messages;
   try {
     const resp = await fetch(endpoint, {
       headers,
@@ -92,7 +91,7 @@ async function openAIFetch({
     throw new Error("Error: Something went wrong...");
   }
 
-  messages = [...data.output];
+  const messages = [...data.output];
   const modelRespObj = messages.find((d) => d?.type === "message");
   const modelResponse = JSON.parse(modelRespObj.content[0].text);
   const response = {

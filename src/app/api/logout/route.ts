@@ -1,8 +1,8 @@
 import { removeSession } from "../../../lib/session";
 import { cookies } from "next/headers";
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function POST(req: NextRequest) {
+export async function POST() {
   const cookieStore = await cookies();
   const sid = cookieStore.get("sid")?.value;
 

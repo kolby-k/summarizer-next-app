@@ -1,4 +1,4 @@
-import { createSession, getSession } from "../../../lib/session";
+import { createSession } from "../../../lib/session";
 import { LoginSchema } from "../../../lib/validators";
 import { authGate } from "../../../utils/authGate";
 import { type NextRequest, NextResponse } from "next/server";

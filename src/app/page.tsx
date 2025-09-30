@@ -21,7 +21,7 @@ export default function Home() {
             <p className="text-4xl pb-6">How It Works:</p>
             <ol className="flex flex-col items-start pl-2 text-2xl gap-2">
               <li>1. Paste a link to an article.</li>
-              <li>2. Click 'Generate Summary'.</li>
+              <li>2. Click Generate Summary.</li>
               <li>3. Read a clear, concise overview with the key takeaways.</li>
             </ol>
           </span>
