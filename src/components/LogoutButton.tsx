@@ -19,10 +19,7 @@ function LogoutButton() {
   };
 
   return (
-    <button
-      onClick={handleLogout}
-      className="cursor-pointer bg-blue-300 text-black px-4 py-2 rounded-lg"
-    >
+    <button onClick={handleLogout} className="logout-button mt-4">
       Logout
     </button>
   );

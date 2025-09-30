@@ -1,19 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.css";
-import Header from "../components/Header";
 import SessionProvider from "@/context/sessionContext";
 import { getSession } from "@/lib/session";
-import SessionInfo from "@/components/SessionInfo";
 import { SummaryProvider } from "@/context/SummarizeContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const mainFont = Roboto({
+  weight: "400",
+  variable: "--font-family-1",
   subsets: ["latin"],
 });
 
@@ -32,15 +26,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${mainFont.variable} antialiased`}>
         <SessionProvider initialSession={safeSession}>
-          <SummaryProvider>
-            <Header />
-            <SessionInfo />
-            {children}
-          </SummaryProvider>
+          <SummaryProvider>{children}</SummaryProvider>
         </SessionProvider>
       </body>
     </html>

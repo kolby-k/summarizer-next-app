@@ -13,11 +13,7 @@ import SummaryCard from "./SummaryCard";
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <button
-      className="px-4 py-2 font-semibold bg-green-500 rounded-md m-2 mx-auto"
-      type="submit"
-      disabled={pending}
-    >
+    <button className="submit-button m-4" type="submit" disabled={pending}>
       {pending ? "Generating…" : "Generate Summary"}
     </button>
   );
@@ -44,9 +40,9 @@ export default function NewSummaryForm() {
   }, [state]);
 
   return (
-    <>
+    <div className="flex flex-col">
       <form
-        className="flex flex-col text-center justify-center items-center gap-1"
+        className="flex flex-col text-center justify-center items-center gap-1 p-2 w-[750px] mx-auto"
         ref={formRef}
         action={formAction}
       >
@@ -58,7 +54,6 @@ export default function NewSummaryForm() {
           type="url"
           name="url"
           required
-          className="text-left text-white pl-1 bg-neutral-600 min-w-[300px]"
           placeholder="https://example.com/article"
         />
         <SubmitButton />
@@ -71,11 +66,9 @@ export default function NewSummaryForm() {
         </p>
       ) : null}
 
-      {currentSummary && (
-        <div className="m-2 md:m-auto md:w-2/3 mx-auto bg-neutral-600 p-2">
-          <SummaryCard data={currentSummary} />
-        </div>
-      )}
-    </>
+      <div className="flex justify-center my-10 min-h-[400px]">
+        {currentSummary && <SummaryCard data={currentSummary} />}
+      </div>
+    </div>
   );
 }

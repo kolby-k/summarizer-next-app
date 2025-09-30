@@ -1,50 +1,217 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Backgrounds */
+  --bg-page: #0a0f1a; /* main page background */
+  --bg-card: #0a0d1a; /* card background */
+  --border-card: #273446; /* subtle card border */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --bg-input: #232322;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Text */
+  --text-primary: #f9fafb; /* white-ish, for h1-h3 */
+  --text-secondary: #f0f1e9; /* softer gray, h4-h6 */
+  --text-tertiary: #9ca3af; /* muted gray, for paragraphs */
+
+  /* Brand Tones */
+  --primary: #3b82f6; /* Tailwind blue-500 */
+  --primary-hover: #2563eb; /* Tailwind blue-600 */
+  --primary-border: #3b82f6;
+  --primary-border-hover: #2563eb;
+
+  --secondary: #06b6d4; /* Tailwind cyan-500 */
+  --secondary-hover: #0891b2; /* Tailwind cyan-600 */
+  --secondary-border: #06b6d4;
+  --secondary-border-hover: #0891b2;
+
+  --tertiary: #a855f7; /* Tailwind purple-500 */
+  --tertiary-hover: #9333ea; /* Tailwind purple-600 */
+  --tertiary-border: #a855f7;
+  --tertiary-border-hover: #9333ea;
+
+  /* Buttons (can map to primary/secondary if needed) */
+  --btn-bg: var(--primary);
+  --btn-bg-hover: var(--primary-hover);
+  --btn-border: var(--primary-border);
+  --btn-border-hover: var(--primary-border-hover);
+  --btn-text: #ffffff;
+
+  --btn-secondary-bg: var(--secondary);
+  --btn-secondary-hover: var(--secondary-hover);
+  --btn-secondary-border: var(--secondary-border);
+  --btn-secondary-border-hover: var(--secondary-border-hover);
+  --btn-secondary-text: #ffffff;
+
+  /* Toast Notifications */
+  --toast-info-bg: #1e3a8a; /* deep blue */
+  --toast-info-border: #3b82f6;
+
+  --toast-success-bg: #065f46; /* green-700 */
+  --toast-success-border: #10b981;
+
+  --toast-warning-bg: #78350f; /* amber-800 */
+  --toast-warning-border: #f59e0b;
+
+  --toast-alert-bg: #7f1d1d; /* red-800 */
+  --toast-alert-border: #ef4444;
+
+  --transparent-primary: #3b83f695;
+
+  font-size: 16px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-family-1), monospace, Arial, Helvetica, sans-serif;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  background-color: var(--bg-page);
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  min-height: 90dvh;
 }
 
-::-webkit-scrollbar-track {
-  background: #1e1f1e; /* Tailwind neutral-800 */
-  border-radius: 8px;
+.summary-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 1rem;
+  color: var(--text-primary);
+  max-width: 750px;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  padding: 2rem;
+
+  box-shadow: 0 5px 20px var(--border-card), 0 5px 40px var(--toast-info-bg);
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: #424240; /* Tailwind yellow-400 */
-  border-radius: 8px;
+.text-container {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  margin: auto;
+  font-weight: 500;
+  max-height: 350px;
+  overflow: auto;
+  margin: 1rem 0;
+  scrollbar-color: var(--border-card) var(--bg-card);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: #424240; /* yellow-500 */
+.title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  position: relative;
 }
 
-/* Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #424240 #1e1f1e;
+h1 {
+  font-size: 2.25rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 1.75rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: var(--text-tertiary);
+  font-weight: 400;
+}
+
+hr {
+  width: 100%;
+  color: var(--border-card);
+  border-radius: 2rem;
+  margin: 1rem auto;
+}
+
+.demo-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 1rem;
+  color: var(--text-primary);
+  max-width: 750px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  padding: 2rem;
+
+  box-shadow: 0 5px 20px var(--border-card), 0 5px 40px var(--toast-info-bg);
+}
+
+.submit-button {
+  background-color: var(--btn-bg);
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  border: 1px solid var(--btn-border);
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: var(--btn-bg-hover);
+  border: 1px solid var(--btn-border-hover);
+}
+
+.logout-button {
+  padding: 0.8rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  background-color: var(--toast-alert-bg);
+  border: 1px solid var(--toast-alert-border);
+}
+
+.logout-button:hover {
+  background-color: var(--toast-alert-border);
+  border: 1px solid var(--toast-alert-bg);
+}
+
+input {
+  background-color: var(--bg-input);
+  font-size: 1rem;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  border-radius: 0.75rem;
+  width: 100%;
+  outline: none;
+  border: 1px solid var(--border-card);
+  color: var(--text-primary);
+}
+
+input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 10px var(--transparent-primary);
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  min-height: 350px;
+  width: 450px;
+  margin: auto;
+  transform: translateY(-100px);
 }

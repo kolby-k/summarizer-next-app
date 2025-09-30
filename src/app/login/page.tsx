@@ -1,5 +1,6 @@
 "use client";
 
+import TitleSection from "@/components/TitleSection";
 import { useSession } from "@/context/sessionContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
@@ -56,37 +57,42 @@ export default function Login() {
   if (session) return null;
 
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <h1 className="text-4xl font-bold text-red-500">Sign In</h1>
-      {loading && (
-        <h1 className="text-green-200 text-lg font-semibold">LOADING!!!</h1>
-      )}
-      {error && <h2 className="text-red-200 text-lg font-semibold">{error}</h2>}
-      <input
-        id="username"
-        name="username"
-        value={username || ""}
-        onChange={(e) => setUsername(e.target.value)}
-        className="bg-slate-200 text-black pl-2"
-        placeholder="username"
-        disabled={loading}
+    <div className="page">
+      <TitleSection
+        title="Login"
+        subTitle="Sign in to continue"
+        actionButton={{ label: "Back", path: "/" }}
       />
-      <input
-        id="password"
-        name="password"
-        value={password || ""}
-        onChange={(e) => setPassword(e.target.value)}
-        className="bg-slate-200 text-black pl-2"
-        placeholder="password"
-        type="password"
-        disabled={loading}
-      />
-      <button
-        onClick={handleSignIn}
-        className="cursor-pointer bg-blue-300 text-black px-4 py-2 rounded-lg"
-      >
-        Sign In
-      </button>
+      <div className="form-container">
+        {loading && (
+          <h1 className="text-green-200 text-lg font-semibold">Loading...</h1>
+        )}
+        {error && (
+          <h2 className="text-red-200 text-lg font-semibold">{error}</h2>
+        )}
+        <input
+          id="username"
+          name="username"
+          value={username || ""}
+          onChange={(e) => setUsername(e.target.value)}
+          className="bg-slate-200 text-black pl-2"
+          placeholder="username"
+          disabled={loading}
+        />
+        <input
+          id="password"
+          name="password"
+          value={password || ""}
+          onChange={(e) => setPassword(e.target.value)}
+          className="bg-slate-200 text-black pl-2"
+          placeholder="password"
+          type="password"
+          disabled={loading}
+        />
+        <button onClick={handleSignIn} className="submit-button">
+          Sign In
+        </button>
+      </div>
     </div>
   );
 }

@@ -1,12 +1,17 @@
 import NewSummaryForm from "@/components/NewSummaryForm";
+import SessionInfo from "@/components/SessionInfo";
+import TitleSection from "@/components/TitleSection";
 
 export default function Summarize() {
   return (
-    <div className="flex flex-col items-center relative">
-      <h1 className="text-4xl font-bold text-red-500">Get A New Summary</h1>
-      <div className="p-2">
-        <NewSummaryForm />
-      </div>
+    <div className="page">
+      <TitleSection
+        title="Summarize Any Online Article"
+        subTitle="Save time and get to the main ideas."
+        actionButton={{ path: "/bookmarks", label: "Bookmarks" }}
+      />
+      <NewSummaryForm />
+      <SessionInfo />
     </div>
   );
 }
