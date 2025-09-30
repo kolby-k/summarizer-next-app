@@ -1,54 +1,77 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { redis } from "@/lib/redis";
-import isUUID from "@/utils/isUUID";
+import { redis } from "./lib/redis";
+import isUUID from "./utils/isUUID";
 
 const SESSION_TTL_SECONDS = Number(process.env.SESSION_TTL_SECONDS ?? 600);
 
+const PUBLIC_PATHS = [
+  "/", // landing
+  "/login", // auth page(s)
+  "/api/auth", // auth callbacks/endpoints
+];
+
+function isPublic(pathname: string) {
+  return (
+    PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith(p + "/")) ||
+    pathname.startsWith("/_next") ||
+    pathname === "/favicon.ico" ||
+    pathname.startsWith("/images/") ||
+    pathname.startsWith("/assets/")
+  );
+}
+
 export async function middleware(req: NextRequest) {
-  const { pathname, search } = req.nextUrl;
-  const isApi = pathname.startsWith("/api/");
+  const { pathname } = req.nextUrl;
+
+  // Allow public & internal assets through
+  if (isPublic(pathname)) return NextResponse.next();
+  // Gate everything else by the presence + shape of the session cookie
   const sid = req.cookies.get("sid")?.value ?? null;
-
-  // Allow root, login, and auth endpoints
-  if (
-    pathname === "/" ||
-    pathname.startsWith("/login") ||
-    pathname.startsWith("/api/auth")
-  ) {
-    return NextResponse.next();
-  }
-
-  // --- API branch: you're not guarding APIs here ---
-  if (isApi) return NextResponse.next();
-
-  // --- Page branch (non-API) ---
   if (!sid || !isUUID(sid)) {
-    const url = req.nextUrl.clone();
-    url.pathname = "/login";
-    url.searchParams.set("next", pathname + search);
-    return NextResponse.redirect(url);
+    return redirectToLogin(req);
   }
 
-  // 1) Auth by Redis existence (+ rolling TTL)
+  // --- Edge-safe Redis check (single RTT): EXISTS + EXPIRE ---
   const key = `sess:${sid}`;
-  const p = redis.pipeline();
-  p.exists(key);
-  p.expire(key, SESSION_TTL_SECONDS); // optional rolling TTL
-  const [exists] = await p.exec<number[]>();
+  try {
+    const pipe = redis.pipeline();
+    pipe.exists(key);
+    pipe.expire(key, SESSION_TTL_SECONDS);
+    const [exists /*: number*/ /*expireOk: number*/] = await pipe.exec<
+      number[]
+    >();
 
-  if (!exists) {
-    const url = req.nextUrl.clone();
-    url.pathname = "/login";
-    url.searchParams.set("next", pathname + search);
-    const res = NextResponse.redirect(url);
-    res.cookies.set("sid", "", { path: "/", maxAge: 0, httpOnly: true });
-    return res;
+    if (!exists) {
+      const res = redirectToLogin(req);
+      // clear the stale cookie
+      res.cookies.set("sid", "", {
+        path: "/",
+        maxAge: 0,
+        httpOnly: true,
+        secure: true,
+        sameSite: "lax",
+      });
+      return res;
+    }
+  } catch {
+    // On Redis/network error, be conservative and require re-auth
+    return redirectToLogin(req);
   }
 
   return NextResponse.next();
 }
 
+function redirectToLogin(req: NextRequest) {
+  const url = req.nextUrl.clone();
+  url.pathname = "/login";
+  url.searchParams.set(
+    "next",
+    req.nextUrl.pathname + (req.nextUrl.search ?? "")
+  );
+  return NextResponse.redirect(url);
+}
+
 // Run on everything except login and Next internals
 export const config = {
-  matcher: ["/((?!login|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 };
