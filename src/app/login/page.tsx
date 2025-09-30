@@ -1,7 +1,7 @@
 "use client";
 
-import TitleSection from "@/components/TitleSection";
-import { useSession } from "@/context/sessionContext";
+import TitleSection from "../../components/TitleSection";
+import { useSession } from "../../context/sessionContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useLayoutEffect, useState } from "react";
 

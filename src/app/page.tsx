@@ -1,5 +1,5 @@
-import DemoCard from "@/components/DemoCard";
-import TitleSection from "@/components/TitleSection";
+import DemoCard from "../components/DemoCard";
+import TitleSection from "../components/TitleSection";
 
 export default function Home() {
   return (

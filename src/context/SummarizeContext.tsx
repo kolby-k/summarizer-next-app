@@ -10,7 +10,7 @@ import {
   type ReactNode,
   useRef,
 } from "react";
-import { getItem, setItem } from "@/lib/storage";
+import { getItem, setItem } from "../lib/storage";
 
 export type Summary = {
   id: string;

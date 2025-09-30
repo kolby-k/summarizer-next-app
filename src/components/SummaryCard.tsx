@@ -1,6 +1,6 @@
 "use client";
 
-import { Summary, useSummaries } from "@/context/SummarizeContext";
+import { Summary, useSummaries } from "../context/SummarizeContext";
 
 export interface SummaryCardProps {
   data: Summary;

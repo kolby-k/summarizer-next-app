@@ -1,6 +1,6 @@
 "use client";
 
-import { SessionData } from "@/lib/session";
+import { SessionData } from "../lib/session";
 import { createContext, useContext, useMemo, useState } from "react";
 
 export type Session = SessionData | null;

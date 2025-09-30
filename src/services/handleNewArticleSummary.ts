@@ -1,5 +1,5 @@
-import type { Summary } from "@/context/SummarizeContext";
-import openAIFetch from "@/lib/openai";
+import type { Summary } from "../context/SummarizeContext";
+import openAIFetch from "../lib/openai";
 import { randomUUID } from "crypto";
 
 async function handleNewArticleSummary(url: string): Promise<Summary | null> {

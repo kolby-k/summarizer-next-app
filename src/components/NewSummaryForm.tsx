@@ -5,9 +5,9 @@ import { useActionState, useEffect, useRef } from "react";
 import {
   summarizeAction,
   type SummaryFormState,
-} from "@/app/summarize/actions";
+} from "../app/summarize/actions";
 import { useFormStatus } from "react-dom";
-import { useSummaries } from "@/context/SummarizeContext";
+import { useSummaries } from "../context/SummarizeContext";
 import SummaryCard from "./SummaryCard";
 
 function SubmitButton() {

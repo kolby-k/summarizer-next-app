@@ -1,7 +1,7 @@
 "use client";
 
 import LogoutButton from "./LogoutButton";
-import { useSession } from "@/context/sessionContext";
+import { useSession } from "../context/sessionContext";
 
 export default function SessionInfo() {
   const { session } = useSession();

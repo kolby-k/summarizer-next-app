@@ -1,6 +1,6 @@
-import { createSession, getSession } from "@/lib/session";
-import { LoginSchema } from "@/lib/validators";
-import { authGate } from "@/utils/authGate";
+import { createSession, getSession } from "../../../lib/session";
+import { LoginSchema } from "../../../lib/validators";
+import { authGate } from "../../../utils/authGate";
 import { type NextRequest, NextResponse } from "next/server";
 
 const FALLBACK_TTL_SECONDS = 600;

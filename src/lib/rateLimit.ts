@@ -1,10 +1,9 @@
-import { redis } from "@/lib/redis";
-import type { UUID } from "crypto";
+import { redis } from "../lib/redis";
 
 const LIMIT = 3;
 const WINDOW_SECONDS = 60;
 
-export async function rateLimit(sessionId: UUID): Promise<boolean> {
+export async function rateLimit(sessionId: string): Promise<boolean> {
   if (!sessionId || typeof sessionId !== "string") {
     throw new Error(
       "rateLimit missing paramater: Expecting a valid session id."

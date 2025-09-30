@@ -1,6 +1,6 @@
 "use client";
 
-import { useSummaries } from "@/context/SummarizeContext";
+import { useSummaries } from "../context/SummarizeContext";
 import SummaryCard from "./SummaryCard";
 
 function BookmarkList() {

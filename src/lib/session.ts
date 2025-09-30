@@ -1,7 +1,6 @@
 // lib/session.ts (server-only)
-import type { Session } from "@/context/sessionContext";
 import { cookies } from "next/headers";
-import { redis } from "@/lib/redis";
+import { redis } from "../lib/redis";
 import { randomUUID, type UUID } from "crypto";
 
 export type SessionData = {

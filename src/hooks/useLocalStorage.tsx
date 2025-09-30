@@ -1,6 +1,6 @@
 "use client";
 
-import { getItem, setItem } from "@/lib/storage";
+import { getItem, setItem } from "../lib/storage";
 import { useEffect, useState } from "react";
 
 function useLocalStorage<T>(key: string, initialValue: T) {

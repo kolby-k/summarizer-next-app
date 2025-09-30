@@ -1,4 +1,4 @@
-import { removeSession } from "@/lib/session";
+import { removeSession } from "../../../lib/session";
 import { cookies } from "next/headers";
 import { NextResponse, type NextRequest } from "next/server";
 

@@ -1,5 +1,5 @@
-import BookmarkList from "@/components/BookmarkList";
-import TitleSection from "@/components/TitleSection";
+import BookmarkList from "../../components/BookmarkList";
+import TitleSection from "../../components/TitleSection";
 
 export default async function Bookmarks() {
   return (
