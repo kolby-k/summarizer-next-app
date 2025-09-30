@@ -14,7 +14,7 @@ function isPublic(pathname: string) {
   return (
     PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith(p + "/")) ||
     pathname.startsWith("/_next") ||
-    pathname === "/favicon.ico" ||
+    pathname.startsWith("/favicon") ||
     pathname.startsWith("/images/") ||
     pathname.startsWith("/assets/")
   );
@@ -31,32 +31,32 @@ export async function middleware(req: NextRequest) {
     return redirectToLogin(req);
   }
 
-  // --- Edge-safe Redis check (single RTT): EXISTS + EXPIRE ---
-  const key = `sess:${sid}`;
-  try {
-    const pipe = redis.pipeline();
-    pipe.exists(key);
-    pipe.expire(key, SESSION_TTL_SECONDS);
-    const [exists /*: number*/ /*expireOk: number*/] = await pipe.exec<
-      number[]
-    >();
+  // // --- Edge-safe Redis check (single RTT): EXISTS + EXPIRE ---
+  // const key = `sess:${sid}`;
+  // try {
+  //   const pipe = redis.pipeline();
+  //   pipe.exists(key);
+  //   pipe.expire(key, SESSION_TTL_SECONDS);
+  //   const [exists /*: number*/ /*expireOk: number*/] = await pipe.exec<
+  //     number[]
+  //   >();
 
-    if (!exists) {
-      const res = redirectToLogin(req);
-      // clear the stale cookie
-      res.cookies.set("sid", "", {
-        path: "/",
-        maxAge: 0,
-        httpOnly: true,
-        secure: true,
-        sameSite: "lax",
-      });
-      return res;
-    }
-  } catch {
-    // On Redis/network error, be conservative and require re-auth
-    return redirectToLogin(req);
-  }
+  //   if (!exists) {
+  //     const res = redirectToLogin(req);
+  //     // clear the stale cookie
+  //     res.cookies.set("sid", "", {
+  //       path: "/",
+  //       maxAge: 0,
+  //       httpOnly: true,
+  //       secure: true,
+  //       sameSite: "lax",
+  //     });
+  //     return res;
+  //   }
+  // } catch {
+  //   // On Redis/network error, be conservative and require re-auth
+  //   return redirectToLogin(req);
+  // }
 
   return NextResponse.next();
 }
