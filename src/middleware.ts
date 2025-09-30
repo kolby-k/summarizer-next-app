@@ -21,15 +21,15 @@ function isPublic(pathname: string) {
 }
 
 export async function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
+  // const { pathname } = req.nextUrl;
 
-  // Allow public & internal assets through
-  if (isPublic(pathname)) return NextResponse.next();
-  // Gate everything else by the presence + shape of the session cookie
-  const sid = req.cookies.get("sid")?.value ?? null;
-  if (!sid || !isUUID(sid)) {
-    return redirectToLogin(req);
-  }
+  // // Allow public & internal assets through
+  // if (isPublic(pathname)) return NextResponse.next();
+  // // Gate everything else by the presence + shape of the session cookie
+  // const sid = req.cookies.get("sid")?.value ?? null;
+  // if (!sid || !isUUID(sid)) {
+  //   return redirectToLogin(req);
+  // }
 
   // // --- Edge-safe Redis check (single RTT): EXISTS + EXPIRE ---
   // const key = `sess:${sid}`;
