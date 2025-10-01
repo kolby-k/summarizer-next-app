@@ -71,11 +71,9 @@ async function openAIFetch({
     });
 
     if (!resp.ok) {
-      const badResp = await resp.json();
-      console.error(badResp?.error || badResp);
       return {
         success: false,
-        message: "API Response error.",
+        message: "API Error.",
         data: {
           summary: "",
           bias: "",
@@ -85,9 +83,7 @@ async function openAIFetch({
     }
 
     data = await resp.json();
-    console.log("DATA: ", JSON.stringify(data, null, 3));
   } catch (error) {
-    console.error("Error to debug: ", error);
     throw new Error("Error: Something went wrong...");
   }
 

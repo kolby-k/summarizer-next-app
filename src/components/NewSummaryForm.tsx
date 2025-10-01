@@ -65,10 +65,6 @@ export default function NewSummaryForm() {
           {state.message}
         </p>
       ) : null}
-
-      <div className="flex justify-center my-10 min-h-[400px]">
-        {currentSummary && <SummaryCard data={currentSummary} />}
-      </div>
     </div>
   );
 }

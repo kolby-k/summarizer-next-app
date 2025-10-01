@@ -22,7 +22,13 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getSession();
-  const safeSession = session ? { ...session } : null;
+  let safeSession;
+
+  if (!session) {
+    safeSession = null;
+  } else {
+    safeSession = { createdTime: Date.now() };
+  }
 
   return (
     <html lang="en">

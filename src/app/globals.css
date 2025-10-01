@@ -78,14 +78,27 @@ body {
   min-height: 90dvh;
 }
 
+.fitted-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  background-color: var(--bg-page);
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  min-height: 99dvh;
+}
+
 .summary-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: 1rem;
   color: var(--text-primary);
-  max-width: 750px;
+  min-width: 500px;
   min-height: 500px;
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -95,6 +108,12 @@ body {
   box-shadow: 0 5px 20px var(--border-card), 0 5px 40px var(--toast-info-bg);
 }
 
+.item-wraper {
+  max-width: 750px;
+  flex: 1;
+  display: flex;
+}
+
 .text-container {
   color: var(--text-primary);
   font-size: 1rem;
@@ -102,7 +121,7 @@ body {
   border-radius: 0.75rem;
   margin: auto;
   font-weight: 500;
-  max-height: 350px;
+  height: 100%;
   overflow: auto;
   margin: 1rem 0;
   scrollbar-color: var(--border-card) var(--bg-card);

@@ -11,7 +11,6 @@ function SummaryCard({ data }: SummaryCardProps) {
 
   const { bookmarks, addBookmark, removeBookmark } = useSummaries();
   const isBookmarked = bookmarks.filter((b) => b.id === id).length === 1;
-  console.log(bookmarks);
 
   const toggleBookmark = () => {
     if (isBookmarked) {

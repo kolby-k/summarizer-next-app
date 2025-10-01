@@ -8,9 +8,9 @@ export default function SessionInfo() {
   if (!session) return null;
   // createdTime -> Unix Epoch MS
   const display = new Date(session.createdTime * 1000).toLocaleTimeString();
-
+  console.log(display);
   return (
-    <div className="mt-10">
+    <div className="absolute bottom-10 right-1/2 translate-x-1/2">
       <LogoutButton />
       <p className="mt-4 font-light text-sm">
         Session started at:{" "}
