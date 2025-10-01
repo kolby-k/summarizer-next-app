@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import LOGO from "../public/logo.png";
+import LOGO from "../../public/logo.png";
 
 function TitleSection({
   title,

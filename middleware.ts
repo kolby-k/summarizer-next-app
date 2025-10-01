@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { redis } from "./lib/redis";
-import isUUID from "./utils/isUUID";
+import { redis } from "@/lib/redis";
+import isUUID from "@/utils/isUUID";
 
 const SESSION_TTL_SECONDS = Number(process.env.SESSION_TTL_SECONDS ?? 600);
 

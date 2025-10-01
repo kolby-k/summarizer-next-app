@@ -1,5 +1,5 @@
-import loginAction, { LoginResponse } from "@/app/login/actions";
-import { useSession } from "@/context/sessionContext";
+import { useSession } from "@/context/SessionContext";
+import loginAction, { type LoginResponse } from "../../app/login/actions";
 import { useActionState, useEffect, useState } from "react";
 
 export type LoginFormState = {
@@ -7,13 +7,15 @@ export type LoginFormState = {
   password: string;
 };
 
+const initialState: LoginResponse = { ok: false, message: "" };
+
 function LoginForm({}) {
   const { setSession } = useSession();
 
   const [state, formAction, isPending] = useActionState<
     LoginResponse,
     FormData
-  >(loginAction, undefined);
+  >(loginAction, initialState);
 
   const [username, setUsername] = useState<null | string>(null);
   const [password, setPassword] = useState<null | string>(null);

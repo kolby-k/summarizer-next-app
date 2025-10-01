@@ -1,14 +1,14 @@
 "use client";
 
 import LogoutButton from "./LogoutButton";
-import { useSession } from "../context/sessionContext";
+import { useSession } from "../context/SessionContext";
 
 export default function SessionInfo() {
   const { session } = useSession();
   if (!session) return null;
   // createdTime -> Unix Epoch MS
-  const display = new Date(session.createdTime * 1000).toLocaleTimeString();
-  console.log(display);
+  const display = new Date(session.createdTime).toLocaleTimeString();
+
   return (
     <div className="absolute bottom-10 right-1/2 translate-x-1/2">
       <LogoutButton />

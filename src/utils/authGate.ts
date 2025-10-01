@@ -7,11 +7,15 @@ export type LoginCredentials = {
 export function authGate({ username, password }: LoginCredentials): boolean {
   if (!username || !password) return false;
 
+  if (!process.env.USERNAME || !process.env.PASSWORD)
+    throw new Error(
+      "Error: No user credentials are configured for authenticate."
+    );
   // only allow the username 'demo'
-  if (username !== "demo") return false;
+  if (username !== process.env.USERNAME) return false;
 
   // only allow the password 'test1234'
-  if (password !== "test1234") return false;
+  if (password !== process.env.PASSWORD) return false;
 
   return true;
 }

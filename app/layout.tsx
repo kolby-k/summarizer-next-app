@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import SessionProvider from "../context/sessionContext";
-import { getSession } from "../lib/session";
-import { SummaryProvider } from "../context/SummarizeContext";
+import SessionProvider from "@/context/SessionContext";
+import { getSession } from "@/lib/session";
+import { SummaryProvider } from "@/context/SummarizeContext";
 
 const mainFont = Roboto({
   weight: "400",

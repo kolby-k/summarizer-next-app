@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "../context/sessionContext";
+import { useSession } from "../context/SessionContext";
 import { useRouter } from "next/navigation";
 
 function LogoutButton() {

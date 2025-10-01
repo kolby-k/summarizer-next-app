@@ -1,8 +1,8 @@
 "use client";
 
-import LoginForm from "../../components/LoginForm";
-import TitleSection from "../../components/TitleSection";
-import { useSession } from "../../context/sessionContext";
+import LoginForm from "@/components/LoginForm";
+import TitleSection from "@/components/TitleSection";
+import { useSession } from "@/context/SessionContext";
 import { useRouter } from "next/navigation";
 import { useLayoutEffect } from "react";
 

@@ -1,11 +1,11 @@
 "use server";
 
-import { SummarizeSchema } from "../../lib/validators";
-import handleNewArticleSummary from "../../services/handleNewArticleSummary";
-import { rateLimit } from "../../lib/rateLimit";
-import isUUID from "../../utils/isUUID";
+import { SummarizeSchema } from "@/lib/validators";
+import handleNewArticleSummary from "@/services/handleNewArticleSummary";
+import { rateLimit } from "@/lib/rateLimit";
+import isUUID from "@/utils/isUUID";
 import { cookies } from "next/headers";
-import type { Summary } from "../../context/SummarizeContext";
+import type { Summary } from "@/context/SummarizeContext";
 
 export type SummaryFormState =
   | { ok: false; message: string }

@@ -1,6 +1,6 @@
-import NewSummaryForm from "../../components/NewSummaryForm";
-import SessionInfo from "../../components/SessionInfo";
-import TitleSection from "../../components/TitleSection";
+import NewSummaryForm from "@/components/NewSummaryForm";
+import SessionInfo from "@/components/SessionInfo";
+import TitleSection from "@/components/TitleSection";
 import CurrentSummary from "@/components/CurrentSummary";
 
 export default function Summarize() {

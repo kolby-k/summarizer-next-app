@@ -16,11 +16,10 @@ export type LoginResponse =
       ok: false;
       message: string;
     }
-  | { ok: true; data: LoginFormState }
-  | undefined;
+  | { ok: true; data: LoginFormState };
 
 async function loginAction(
-  prevState: LoginResponse,
+  _prevState: LoginResponse,
   formData: FormData | null
 ): Promise<LoginResponse> {
   // initial state is null
