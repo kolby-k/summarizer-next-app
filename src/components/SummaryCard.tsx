@@ -21,18 +21,13 @@ function SummaryCard({ data }: SummaryCardProps) {
   };
 
   return (
-    <div className="summary-card">
-      <p className="text-3xl font-bold text-center mx-auto">{title}</p>
+    <div className="card summary-card">
+      <h5>{title}</h5>
       <div className="text-container">
-        <p className="text-2xl text-center mb-1 text-(--text-secondary)">
-          Summary
-        </p>
-        <p className="mb-2 text-left text-lg">{summary}</p>
+        <h6>Summary</h6>
+        <p className="text-left">{summary}</p>
       </div>
-      <button
-        className="px-4 py-2 bg-yellow-400 text-black font-medium m-2 cursor-pointer"
-        onClick={toggleBookmark}
-      >
+      <button className="button-two" onClick={toggleBookmark}>
         {isBookmarked ? "Remove Bookmark" : "Bookmark"}
       </button>
     </div>

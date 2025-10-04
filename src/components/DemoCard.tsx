@@ -2,10 +2,10 @@ import React from "react";
 
 function DemoCard() {
   return (
-    <div className="demo-card">
+    <div className="card">
       <div>
-        <h1>Fast & Simple</h1>
-        <h3>Copy a URL, get results in seconds.</h3>
+        <h2>Fast & Simple</h2>
+        <h4>Paste any link and get a clear summary in seconds</h4>
       </div>
       <hr />
       <div className="flex flex-1 items-center justify-center w-[500px]">

@@ -43,7 +43,7 @@ function TitleSection({
           <Link
             href={path}
             title={label}
-            className="text-lg font-bold text-(--secondary) hover:text-(--secondary-hover)"
+            className="text-lg font-bold text-(--accent-orange-light) hover:text-(--accent-orange)"
           >
             {label}
           </Link>

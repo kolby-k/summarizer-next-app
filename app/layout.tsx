@@ -6,7 +6,7 @@ import { getSession } from "@/lib/session";
 import { SummaryProvider } from "@/context/SummarizeContext";
 
 const mainFont = Roboto({
-  weight: "400",
+  weight: ["400", "500", "600", "700"],
   variable: "--font-family-1",
   subsets: ["latin"],
 });

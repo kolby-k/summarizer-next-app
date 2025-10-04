@@ -42,7 +42,6 @@ function LoginForm({}) {
         name="username"
         value={username || ""}
         onChange={(e) => setUsername(e.target.value)}
-        className="bg-slate-200 text-black pl-2"
         placeholder="username"
         disabled={isPending}
       />
@@ -51,7 +50,6 @@ function LoginForm({}) {
         name="password"
         value={password || ""}
         onChange={(e) => setPassword(e.target.value)}
-        className="bg-slate-200 text-black pl-2"
         placeholder="password"
         type="password"
         disabled={isPending}

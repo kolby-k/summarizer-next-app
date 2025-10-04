@@ -20,7 +20,7 @@ export default function Login() {
   if (session) return null;
 
   return (
-    <div className="page">
+    <div className="page bg-texture-dim bg-texture">
       <TitleSection
         title="Login"
         subTitle="Sign in to continue"

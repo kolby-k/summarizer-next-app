@@ -26,7 +26,7 @@ export default function NewSummaryForm() {
     initialState
   );
 
-  const { setCurrentSummary, currentSummary } = useSummaries();
+  const { setCurrentSummary } = useSummaries();
 
   const formRef = useRef<HTMLFormElement>(null);
 

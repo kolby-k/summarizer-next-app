@@ -5,7 +5,7 @@ import CurrentSummary from "@/components/CurrentSummary";
 
 export default function Summarize() {
   return (
-    <div className="fitted-page">
+    <div className="page bg-texture bg-texture-dim">
       <TitleSection
         title="Summarize Any Online Article"
         subTitle="Save time and get to the main ideas."

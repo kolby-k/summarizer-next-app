@@ -3,7 +3,7 @@ import TitleSection from "@/components/TitleSection";
 
 export default async function Bookmarks() {
   return (
-    <div className="page">
+    <div className="page bg-texture">
       <TitleSection
         title="Your Saved Article Summaries"
         subTitle="Keep track of your summarized articles in one place."

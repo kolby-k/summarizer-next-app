@@ -1,69 +1,75 @@
 @import "tailwindcss";
 
 :root {
-  /* Backgrounds */
-  --bg-page: #0a0f1a; /* main page background */
-  --bg-card: #0a0d1a; /* card background */
-  --border-card: #273446; /* subtle card border */
+  /* NEW DESIGN */
+  --bg-dark: hsl(0 0 0);
+  --bg: hsl(0 0 5);
+  --bg-light: hsl(0 0 10);
 
-  --bg-input: #232322;
+  --text: hsl(0 0 95);
+  --text-secondary: hsl(0 0 85);
+  --text-muted: hsl(0 0 70);
+  --text-inverted: hsl(0 0 5);
 
-  /* Text */
-  --text-primary: #f9fafb; /* white-ish, for h1-h3 */
-  --text-secondary: #f0f1e9; /* softer gray, h4-h6 */
-  --text-tertiary: #9ca3af; /* muted gray, for paragraphs */
+  --border: hsl(0 0 30);
+  --highlight: hsl(0 0 60);
 
-  /* Brand Tones */
-  --primary: #3b82f6; /* Tailwind blue-500 */
-  --primary-hover: #2563eb; /* Tailwind blue-600 */
-  --primary-border: #3b82f6;
-  --primary-border-hover: #2563eb;
+  --gradient: linear-gradient(0deg, var(--bg) 95%, var(--bg-light));
+  --gradient-hover: linear-gradient(0deg, var(--bg), var(--bg-light));
 
-  --secondary: #06b6d4; /* Tailwind cyan-500 */
-  --secondary-hover: #0891b2; /* Tailwind cyan-600 */
-  --secondary-border: #06b6d4;
-  --secondary-border-hover: #0891b2;
+  --border-card: 1px solid var(--border);
+  --shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
 
-  --tertiary: #a855f7; /* Tailwind purple-500 */
-  --tertiary-hover: #9333ea; /* Tailwind purple-600 */
-  --tertiary-border: #a855f7;
-  --tertiary-border-hover: #9333ea;
+  --primary-dark: oklch(0.4 0.15 220);
+  --primary: oklch(0.5 0.15 220);
+  --primary-light: oklch(0.6 0.15 220);
 
-  /* Buttons (can map to primary/secondary if needed) */
   --btn-bg: var(--primary);
-  --btn-bg-hover: var(--primary-hover);
-  --btn-border: var(--primary-border);
-  --btn-border-hover: var(--primary-border-hover);
-  --btn-text: #ffffff;
+  --btn-bg-hover: var(--primary-dark);
+  --btn-text: var(--text-inverted);
+  --btn-border: 1px solid var(--primary);
 
-  --btn-secondary-bg: var(--secondary);
-  --btn-secondary-hover: var(--secondary-hover);
-  --btn-secondary-border: var(--secondary-border);
-  --btn-secondary-border-hover: var(--secondary-border-hover);
-  --btn-secondary-text: #ffffff;
+  --accent-red-dark: oklch(0.4 0.15 40);
+  --accent-red: oklch(0.5 0.15 40);
+  --accent-red-light: oklch(0.6 0.15 40);
 
-  /* Toast Notifications */
-  --toast-info-bg: #1e3a8a; /* deep blue */
-  --toast-info-border: #3b82f6;
-
-  --toast-success-bg: #065f46; /* green-700 */
-  --toast-success-border: #10b981;
-
-  --toast-warning-bg: #78350f; /* amber-800 */
-  --toast-warning-border: #f59e0b;
-
-  --toast-alert-bg: #7f1d1d; /* red-800 */
-  --toast-alert-border: #ef4444;
+  --accent-orange-dark: oklch(0.4 0.15 80);
+  --accent-orange: oklch(0.5 0.15 80);
+  --accent-orange-light: oklch(0.6 0.15 80);
 
   --transparent-primary: #3b83f695;
 
   font-size: 16px;
 }
 
+body.light {
+  --bg-dark: hsl(0 0 90);
+  --bg: hsl(0 0 95);
+  --bg-light: hsl(0 0 100);
+
+  --text: hsl(0 0 5);
+  --text-secondary: hsl(0 0 15);
+  --text-muted: hsl(0 0 30);
+  --text-inverted: hsl(0 0 95);
+
+  --highlight: hsl(0 0 100);
+
+  --gradient: linear-gradient(0deg, var(--bg) 95%, var(--bg-light));
+  --gradient-hover: linear-gradient(0deg, var(--bg), var(--bg-light));
+
+  --border-card: 1px solid var(--bg);
+
+  --btn-bg: var(--primary);
+  --btn-bg-hover: var(--primary-light);
+  --btn-text: var(--text-inverted);
+  --btn-border: 1px solid var(--primary-light);
+}
+
 body {
-  background: var(--bg-page);
-  color: var(--text-primary);
+  background: var(--bg);
+  color: var(--text);
   font-family: var(--font-family-1), monospace, Arial, Helvetica, sans-serif;
+  font-size: 1rem;
 }
 
 .page {
@@ -71,30 +77,71 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
-  background-color: var(--bg-page);
   text-align: center;
   padding: 2rem;
+  padding-top: 3rem;
   position: relative;
-  min-height: 90dvh;
+  min-height: 100dvh;
 }
 
-.fitted-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 100%;
-  background-color: var(--bg-page);
-  text-align: center;
-  padding: 2rem;
-  position: relative;
-  min-height: 99dvh;
+.bg-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  background-size: 250px 250px;
+  background-image: radial-gradient(
+      circle,
+      var(--bg-light) 5px,
+      transparent 8px
+    ),
+    linear-gradient(0deg, transparent 49%, var(--bg-light) 50%, transparent 51%),
+    linear-gradient(
+      90deg,
+      transparent 49%,
+      var(--bg-light) 50%,
+      transparent 51%
+    );
+  background-repeat: repeat;
+  z-index: -1;
+}
+
+/* todo fix this so bg has fad top/bottom */
+.bg-texture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    var(--bg) 10px,
+    transparent 30%,
+    transparent 80%,
+    var(--bg-dark)
+  );
+}
+
+.bg-texture-dim::before {
+  opacity: 0.25;
+}
+
+.bg-texture-dim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    var(--bg) 10px,
+    transparent 30%,
+    transparent 70%,
+    var(--bg-dark)
+  );
 }
 
 .summary-card {
-  background-color: var(--bg-card);
+  background-color: var(--bg);
   border: 1px solid var(--border-card);
   border-radius: 1rem;
-  color: var(--text-primary);
+  color: var(--text);
   min-width: 500px;
   min-height: 500px;
   display: flex;
@@ -105,7 +152,28 @@ body {
   overflow: hidden;
   padding: 2rem;
 
-  box-shadow: 0 5px 20px var(--border-card), 0 5px 40px var(--toast-info-bg);
+  box-shadow: var(--shadow);
+}
+
+.card {
+  background: var(--bg);
+  border-radius: 1rem;
+  padding: 1rem;
+  background: var(--gradient);
+  border: var(--border-card);
+  text-align: center;
+
+  border-top: 1px solid var(--highlight);
+  box-shadow: var(--shadow);
+
+  height: max(50dvh, 500px);
+  width: 700px;
+
+  overflow: hidden;
+}
+
+.card:hover {
+  background: var(--gradient-hover);
 }
 
 .item-wraper {
@@ -114,59 +182,39 @@ body {
   display: flex;
 }
 
-.text-container {
-  color: var(--text-primary);
-  font-size: 1rem;
-  padding: 1rem 2rem;
-  border-radius: 0.75rem;
-  margin: auto;
-  font-weight: 500;
-  height: 100%;
-  overflow: auto;
-  margin: 1rem 0;
-  scrollbar-color: var(--border-card) var(--bg-card);
-}
-
-.title-container {
+.summary-card {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: center;
-  gap: 0.5rem;
+  padding: 1rem 2rem;
+}
+
+.text-container {
+  background-color: var(--bg-light);
+  color: var(--text);
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  max-height: 50%;
+  overflow: hidden;
+}
+
+.text-container > p {
+  height: 90%;
+  overflow: hidden;
+}
+
+.title-container {
   padding: 1rem;
   position: relative;
 }
 
-h1 {
-  font-size: 2.25rem;
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-h2 {
-  font-size: 1.75rem;
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-
-h3 {
-  font-size: 1.5rem;
-  color: var(--text-tertiary);
-  font-weight: 400;
-}
-
-hr {
-  width: 100%;
-  color: var(--border-card);
-  border-radius: 2rem;
-  margin: 1rem auto;
-}
-
 .demo-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-card);
-  border-radius: 1rem;
-  color: var(--text-primary);
+  color: var(--text);
   max-width: 750px;
   height: 400px;
   display: flex;
@@ -175,54 +223,80 @@ hr {
   align-items: center;
   overflow: hidden;
   padding: 2rem;
+}
 
-  box-shadow: 0 5px 20px var(--border-card), 0 5px 40px var(--toast-info-bg);
+.demo-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--bg);
+  backdrop-filter: blur(2px);
+  z-index: -1;
+  border: 1px dotted var(--border-card);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  opacity: 0.65;
+}
+
+button {
+  border-radius: 0.25rem;
+  cursor: pointer;
+  color: var(--text-inverted);
 }
 
 .submit-button {
-  background-color: var(--btn-bg);
   padding: 1rem 2rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  border-radius: 0.25rem;
-  border: 1px solid var(--btn-border);
-  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: 700;
+  background-color: var(--primary);
+  border: 1px solid var(--primary-light);
 }
 
 .submit-button:hover {
-  background-color: var(--btn-bg-hover);
-  border: 1px solid var(--btn-border-hover);
+  background-color: var(--primary-dark);
+  border: 1px solid var(--primary);
 }
 
 .logout-button {
   padding: 0.8rem 1.75rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  background-color: var(--toast-alert-bg);
-  border: 1px solid var(--toast-alert-border);
+  font-size: 1.1rem;
+  font-weight: 700;
+  background-color: var(--accent-red);
+  border: 1px solid var(--accent-red-light);
 }
 
 .logout-button:hover {
-  background-color: var(--toast-alert-border);
-  border: 1px solid var(--toast-alert-bg);
+  background-color: var(--accent-red-dark);
+  border: 1px solid var(--accent-red);
+}
+
+.button-two {
+  padding: 1rem 2rem;
+  background-color: var(--accent-orange);
+  font-size: 1.25rem;
+  font-weight: 700;
+  border: 1px solid var(--accent-orange-light);
+}
+
+.button-two:hover {
+  background-color: var(--accent-orange-dark);
+  border: 1px solid var(--accent-orange);
 }
 
 input {
-  background-color: var(--bg-input);
-  font-size: 1rem;
+  background-color: var(--bg-light);
+  font-size: 1.1rem;
   padding: 0.5rem 0.5rem 0.5rem 1rem;
   border-radius: 0.75rem;
   width: 100%;
   outline: none;
   border: 1px solid var(--border-card);
-  color: var(--text-primary);
+  color: var(--text);
 }
 
 input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 10px var(--transparent-primary);
+  box-shadow: 0 0 10px var(--primary-light);
 }
 
 .form-container {
@@ -233,4 +307,61 @@ input:focus {
   width: 450px;
   margin: auto;
   transform: translateY(-100px);
+}
+
+.bold {
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 4rem;
+  color: var(--text);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 3rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 2.5rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+h4 {
+  font-size: 1.75rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+h5 {
+  font-size: 1.6rem;
+  color: var(--text);
+  font-weight: 400;
+}
+
+h6 {
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+hr {
+  width: 100%;
+  color: var(--border);
+  border-radius: 2rem;
+  margin: 1rem auto;
+}
+
+ol {
+  padding: 2rem;
+  font-size: 1.7rem;
+}
+
+li {
+  padding: 0.3rem;
+  line-height: 2.2rem;
 }
