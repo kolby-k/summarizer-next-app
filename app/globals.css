@@ -19,6 +19,7 @@
 
   --border-card: 1px solid var(--border);
   --shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
+  --shadow-light: 0 2px 2px hsla(0 0 70 100%);
 
   --primary-dark: oklch(0.4 0.15 220);
   --primary: oklch(0.5 0.15 220);
@@ -36,6 +37,8 @@
   --accent-orange-dark: oklch(0.4 0.15 80);
   --accent-orange: oklch(0.5 0.15 80);
   --accent-orange-light: oklch(0.6 0.15 80);
+
+  --transparent: hsla(0 0 10 20%);
 
   font-size: 16px;
 }
@@ -68,12 +71,33 @@ body {
   min-height: 100%;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-family-1), monospace, Arial, Helvetica, sans-serif;
-  font-size: 1rem;
 }
+
+a {
+  display: block;
+}
+
+.logo {
+  margin: 1rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  background-color: transparent;
+}
+.logo img {
+  min-width: 50px;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* REVIEW BELOW */
 
 .page {
   display: flex;
@@ -388,19 +412,8 @@ li {
   font-size: 2rem;
 }
 
-.hero {
-  background: var(--bg);
-  border-radius: 1rem;
-  padding: 2rem 1rem;
-  background: var(--gradient-hover);
-  border: var(--border-card);
-  text-align: center;
-
-  border-top: 1px solid var(--highlight);
-  box-shadow: var(--shadow);
-
-  width: min(50%, 700px);
-
-  display: flex;
-  flex-direction: column;
+@media only screen and (max-width: 790px) {
+  .logo {
+    margin: 0;
+  }
 }

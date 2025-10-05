@@ -1,0 +1,239 @@
+.page {
+  background-color: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  justify-content: space-between;
+  overflow: hidden;
+
+  /* border: 1px solid yellow; */
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  position: relative;
+  min-width: 350px;
+  padding: 1rem;
+  background: linear-gradient(0deg, var(--bg-light) 70%, var(--bg));
+}
+
+.navMenu {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  padding: 1rem;
+  margin: auto 2rem;
+  max-width: 1500px;
+  align-self: center;
+}
+
+.navMenu a {
+  font-size: 1.35rem;
+}
+
+.navMenu a:hover {
+  color: var(--text-secondary);
+}
+
+.loginRedirect {
+  font-size: 1.1rem;
+  width: 200px;
+  height: 50%;
+  cursor: pointer;
+  color: var(--primary-light);
+  padding: 1rem;
+  text-align: center;
+  margin: auto;
+}
+
+.loginRedirect:hover {
+  color: var(--primary);
+}
+
+.hero {
+  display: flex;
+  height: 65dvh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(
+    var(--bg-light) 20%,
+    var(--bg) 70%,
+    var(--bg-dark)
+  );
+  border-radius: 0px;
+  /* border: 2px solid green; */
+}
+
+.heroText {
+  padding: 1rem;
+
+  /* border: 1px solid lightblue; */
+}
+
+.heroAction {
+  display: flex;
+  justify-content: center;
+  width: 500px;
+
+  /* border: 1px solid lightgreen; */
+}
+
+.heroAction a {
+  min-width: max(50%, 200px);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--primary);
+  border: 1px solid var(--primary-light);
+  color: var(--text-inverted);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.heroAction a:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-light);
+}
+
+.nextSectionLabel {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.howItWorks {
+  min-height: 70dvh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: radial-gradient(var(--bg) 35%, var(--bg-dark), transparent);
+  background-color: var(--bg-dark);
+  padding: 4rem 2rem;
+
+  /* border: 1px solid salmon; */
+}
+
+.howItWorks ol {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  padding: 1rem;
+  max-width: 1500px;
+  margin: 1rem auto;
+  text-align: left;
+}
+
+.howItWorks li {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(0deg, var(--bg) 70%, var(--bg-light));
+  box-shadow: 0 2px 2px var(--highlight);
+  border: 1px solid var(--border);
+  border-top: 1px solid var(--highlight);
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  color: var(--text-muted);
+  min-width: 350px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100px;
+  padding: 1rem 4rem;
+  gap: 2rem;
+  background: linear-gradient(var(--bg-dark) 60%, var(--bg));
+
+  /* border: 1px solid white; */
+}
+
+.footerMenu {
+  display: flex;
+  gap: 2rem;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.footerMenu a:hover {
+  color: var(--text);
+  text-align: center;
+}
+
+.logoContainer {
+  width: 200px;
+}
+
+.demoDisclaimer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  width: 200px;
+}
+
+.downArrow {
+  animation: colorShift 4s infinite alternate ease-in-out;
+}
+
+@keyframes colorShift {
+  0% {
+    color: var(--primary-dark);
+  }
+  50% {
+    color: var(--primary-light);
+    transform: translateY(10px);
+  }
+  100% {
+    color: var(--primary-dark);
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .howItWorks ol {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .howItWorks li {
+    flex: 1;
+  }
+}
+
+@media only screen and (max-width: 790px) {
+  .navMenu {
+    display: none;
+  }
+
+  .loginRedirect {
+    width: 100%;
+    text-align: right;
+  }
+
+  .howItWorks {
+    min-height: 700px;
+    background: radial-gradient(var(--bg-dark), var(--bg), var(--bg-dark));
+    padding: 6rem 2rem;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: center;
+  }
+}

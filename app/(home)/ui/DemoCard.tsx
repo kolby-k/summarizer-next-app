@@ -1,11 +1,9 @@
-import React from "react";
-
 function DemoCard() {
   return (
     <div className="flex flex-col h-full gap-10 w-full justify-around items-center">
       <div className="hero">
-        <h3>Fast & Simple</h3>
-        <h4>Paste any link and get a clear summary in seconds</h4>
+        <h3>Summarize Any Article Instantly</h3>
+        <h4>Paste a link and get a clear, concise summary in seconds!</h4>
       </div>
 
       <div className="how-it-works">
