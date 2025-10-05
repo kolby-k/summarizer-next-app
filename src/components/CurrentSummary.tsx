@@ -5,10 +5,10 @@ import SummaryCard from "./SummaryCard";
 function CurrentSummary() {
   const { currentSummary } = useSummaries();
 
-  if (!currentSummary) return <div className="h-[30vh]"></div>;
+  if (!currentSummary) return <div className="spacer"></div>;
 
   return (
-    <div className="pt-10 max-w-[850px] max-h-[750px] mx-auto">
+    <div className="pt-6 mx-auto h-[650px]">
       {currentSummary && <SummaryCard data={currentSummary} />}
     </div>
   );

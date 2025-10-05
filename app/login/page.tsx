@@ -25,6 +25,7 @@ export default function Login() {
         title="Login"
         subTitle="Sign in to continue"
         actionButton={{ label: "Back", path: "/" }}
+        opts={{ smallTitle: true }}
       />
       <LoginForm />
     </div>

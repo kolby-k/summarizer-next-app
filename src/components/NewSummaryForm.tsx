@@ -8,6 +8,7 @@ import {
 } from "../../app/summarize/actions";
 import { useFormStatus } from "react-dom";
 import { useSummaries } from "../context/SummarizeContext";
+import Loader from "./Loader";
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -21,10 +22,10 @@ function SubmitButton() {
 const initialState: SummaryFormState = { ok: false, message: "" };
 
 export default function NewSummaryForm() {
-  const [state, formAction] = useActionState<SummaryFormState, FormData>(
-    summarizeAction,
-    initialState
-  );
+  const [state, formAction, isPending] = useActionState<
+    SummaryFormState,
+    FormData
+  >(summarizeAction, initialState);
 
   const { setCurrentSummary } = useSummaries();
 
@@ -39,31 +40,33 @@ export default function NewSummaryForm() {
   }, [state, setCurrentSummary]);
 
   return (
-    <div className="flex flex-col">
-      <form
-        className="flex flex-col text-center justify-center items-center gap-1 p-2 w-[750px] mx-auto"
-        ref={formRef}
-        action={formAction}
-      >
-        <label className="text-lg font-semibold" htmlFor="url">
-          Enter a Website URL
-        </label>
-        <input
-          id="url"
-          type="url"
-          name="url"
-          required
-          placeholder="https://example.com/article"
-        />
-        <SubmitButton />
-      </form>
-
+    <>
+      <Loader isLoading={isPending} />
+      <div className="flex flex-col">
+        <form
+          className="flex flex-col text-center justify-center items-center gap-1 p-2 w-[750px] mx-auto"
+          ref={formRef}
+          action={formAction}
+        >
+          <label className="text-lg font-semibold" htmlFor="url">
+            Enter a Website URL
+          </label>
+          <input
+            id="url"
+            type="url"
+            name="url"
+            required
+            placeholder="https://example.com/article"
+          />
+          <SubmitButton />
+        </form>
+      </div>
       {/* Errors */}
       {!state.ok && state.message ? (
         <p role="alert" style={{ color: "crimson", marginTop: 8 }}>
           {state.message}
         </p>
       ) : null}
-    </div>
+    </>
   );
 }

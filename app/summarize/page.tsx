@@ -7,14 +7,15 @@ export default function Summarize() {
   return (
     <div className="page bg-texture bg-texture-dim">
       <TitleSection
-        title="Summarize Any Online Article"
-        subTitle="Save time and get to the main ideas."
+        title="Summarize Any Article"
+        subTitle="Get to the main ideas in seconds"
         actionButton={{ path: "/bookmarks", label: "Bookmarks" }}
+        opts={{ smallTitle: true }}
       />
       <NewSummaryForm />
-      <div className="w-[90vw] min-h-[1/2vh] mx-auto">
-        <CurrentSummary />
-      </div>
+
+      <CurrentSummary />
+
       <SessionInfo />
     </div>
   );

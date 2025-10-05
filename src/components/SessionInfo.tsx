@@ -10,9 +10,9 @@ export default function SessionInfo() {
   const display = new Date(session.createdTime).toLocaleTimeString();
 
   return (
-    <div className="absolute bottom-10 right-1/2 translate-x-1/2">
+    <div className="absolute bottom-2 right-1/2 translate-x-1/2">
       <LogoutButton />
-      <p className="mt-4 font-light text-sm">
+      <p className="mt-1 text-(--text-muted) font-light text-sm">
         Session started at:{" "}
         <time dateTime={display} suppressHydrationWarning>
           {display}

@@ -7,6 +7,7 @@ function TitleSection({
   title,
   subTitle,
   actionButton,
+  opts,
 }: {
   title: string;
   subTitle: string;
@@ -14,6 +15,11 @@ function TitleSection({
     path: string;
     label: string;
   };
+  opts?:
+    | {
+        smallTitle: boolean;
+      }
+    | undefined;
 }) {
   const { path, label } = actionButton
     ? actionButton
@@ -22,33 +28,43 @@ function TitleSection({
   const showBackButton = label === "Back";
 
   return (
-    <div className="title-container">
+    <div className="flex flex-col min-w-[600px]">
       {!showBackButton && (
-        <Link href={"/"}>
+        <Link href={"/"} className="absolute top-0 left-4 z-1000">
           <Image
             src={LOGO}
             alt="Summarizer Logo"
             width={50}
             height={50}
-            className="w-16 h-auto m-4 absolute -top-2 -left-2 box-shadow-main"
+            className="w-16 h-auto m-4"
           />
         </Link>
       )}
-      <h1>{title}</h1>
-      <h3>{subTitle}</h3>
-      {path && label && (
-        <div
-          className={`absolute top-2 ${showBackButton ? "left-4" : "right-4"}`}
+      <div className="title-container">
+        <h1
+          className={`max-w-[50vw] mx-auto ${
+            opts?.smallTitle ? "small-title" : ""
+          }`}
         >
-          <Link
-            href={path}
-            title={label}
-            className="text-lg font-bold text-(--accent-orange-light) hover:text-(--accent-orange)"
+          {title}
+        </h1>
+        {opts?.smallTitle ? <h4>{subTitle}</h4> : <h3>{subTitle}</h3>}
+        {path && label && (
+          <div
+            className={`absolute top-8 ${
+              showBackButton ? "left-4" : "right-4"
+            }`}
           >
-            {label}
-          </Link>
-        </div>
-      )}
+            <Link
+              href={path}
+              title={label}
+              className="text-lg font-bold self-center text-(--accent-orange-light) hover:text-(--accent-orange)"
+            >
+              {label}
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

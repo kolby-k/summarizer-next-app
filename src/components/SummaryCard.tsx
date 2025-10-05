@@ -21,7 +21,7 @@ function SummaryCard({ data }: SummaryCardProps) {
   };
 
   return (
-    <div className="card summary-card">
+    <div className="summary-card">
       <h5>{title}</h5>
       <div className="text-container">
         <h6>Summary</h6>
