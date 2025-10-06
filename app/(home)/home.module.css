@@ -41,7 +41,7 @@
 .loginRedirect {
   font-size: 1.1rem;
   width: 200px;
-  height: 50%;
+  height: 80%;
   cursor: pointer;
   color: var(--primary-light);
   padding: 1rem;
@@ -55,7 +55,7 @@
 
 .hero {
   display: flex;
-  height: 65dvh;
+  min-height: 65dvh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -68,6 +68,7 @@
     var(--bg-dark)
   );
   border-radius: 0px;
+
   /* border: 2px solid green; */
 }
 
@@ -80,7 +81,7 @@
 .heroAction {
   display: flex;
   justify-content: center;
-  width: 500px;
+  max-width: 500px;
 
   /* border: 1px solid lightgreen; */
 }
@@ -153,6 +154,7 @@
   justify-content: space-between;
   align-items: center;
   min-height: 100px;
+  width: 100%;
   padding: 1rem 4rem;
   gap: 2rem;
   background: linear-gradient(var(--bg-dark) 60%, var(--bg));
@@ -162,11 +164,10 @@
 
 .footerMenu {
   display: flex;
-  gap: 2rem;
   flex: 1;
+  gap: 2rem;
   align-items: center;
   justify-content: center;
-  padding: 0 2rem;
   font-size: 1.25rem;
   font-weight: 400;
   color: var(--text-secondary);
@@ -217,6 +218,10 @@
 }
 
 @media only screen and (max-width: 790px) {
+  .header {
+    grid-template-columns: 1fr 4fr;
+  }
+
   .navMenu {
     display: none;
   }
@@ -234,6 +239,27 @@
 
   .footer {
     flex-direction: column;
-    align-items: center;
+    flex: 1;
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .hero {
+    min-height: 80vh;
+  }
+
+  .heroText {
+    padding: 0.5rem;
+  }
+
+  .howItWorks li {
+    min-width: 200px;
+    font-size: 1.25rem;
+  }
+
+  .footerMenu {
+    font-size: 1rem;
+    width: 100%;
   }
 }

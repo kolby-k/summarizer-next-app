@@ -1,6 +1,6 @@
 "use client";
 import { useSummaries } from "@/context/SummarizeContext";
-import SummaryCard from "./SummaryCard";
+import SummaryCard from "@/components/SummaryCard";
 
 function CurrentSummary() {
   const { currentSummary } = useSummaries();

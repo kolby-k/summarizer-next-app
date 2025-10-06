@@ -1,7 +1,7 @@
 import NewSummaryForm from "app/summarize/ui/NewSummaryForm";
 import SessionInfo from "@/components/SessionInfo";
 import TitleSection from "@/components/TitleSection";
-import CurrentSummary from "@/components/CurrentSummary";
+import CurrentSummary from "./ui/CurrentSummary";
 
 export default function Summarize() {
   return (
