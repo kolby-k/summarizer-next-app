@@ -1,4 +1,4 @@
-import NewSummaryForm from "@/components/NewSummaryForm";
+import NewSummaryForm from "app/summarize/ui/NewSummaryForm";
 import SessionInfo from "@/components/SessionInfo";
 import TitleSection from "@/components/TitleSection";
 import CurrentSummary from "@/components/CurrentSummary";

@@ -1,0 +1,124 @@
+.page {
+  color: var(--text);
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+
+  /* border: 1px solid yellow; */
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  min-width: 350px;
+  height: 250px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.backLink {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+}
+
+.formContainer {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: 50%;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 2rem;
+  height: 300px;
+  min-width: 200px;
+  align-self: center;
+}
+
+.loginForm input {
+  height: 40px;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.loginForm button {
+  height: 50px;
+  max-width: 325px;
+  margin: 0 auto;
+}
+
+/* host element */
+.bgTexture {
+  position: relative;
+  isolation: isolate; /* keeps ::before under content without leaking behind parent */
+  z-index: 0;
+  --texture-opacity: 0.4; /* default */
+  --fade-top: 90%; /* where fade ends at top */
+  --fade-bottom: 50%; /* where fade starts at bottom */
+  --cell: 250px 250px; /* texture cell size */
+}
+
+/* single pseudo does texture + fade */
+.bgTexture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1; /* behind content of .bg-texture, still above page bg */
+  opacity: var(--texture-opacity);
+  pointer-events: none;
+
+  /* texture layers */
+  background-image: radial-gradient(
+      circle,
+      var(--bg-light) 5px,
+      transparent 8px
+    ),
+    linear-gradient(0deg, transparent 49%, var(--bg-light) 50%, transparent 51%),
+    linear-gradient(
+      90deg,
+      transparent 49%,
+      var(--bg-light) 50%,
+      transparent 51%
+    );
+  background-size: var(--cell), var(--cell), var(--cell);
+  background-repeat: repeat;
+
+  /* fade top/bottom with a mask (Safari + others) */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    var(--bg) 0,
+    transparent var(--fade-top),
+    transparent var(--fade-bottom),
+    var(--bg-dark) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    var(--bg) 0,
+    transparent var(--fade-top),
+    transparent var(--fade-bottom),
+    var(--bg-dark) 100%
+  );
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+/* dim variant = just tweak vars */
+.bgTextureDim {
+  --texture-opacity: 0.2;
+  --fade-bottom: 50%;
+}
+
+@media only screen and (max-width: 450px) {
+  .backLink {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
+}

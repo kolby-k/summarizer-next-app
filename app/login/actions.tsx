@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { LoginSchema } from "@/lib/validators";
 import { createSession } from "@/lib/session";
 import { authGate } from "@/utils/authGate";
-import type { LoginFormState } from "@/components/LoginForm";
+import type { LoginFormState } from "./ui/LoginForm";
 
 const FALLBACK_TTL_SECONDS = 600;
 const SESSION_TTL_SECONDS = process.env.SESSION_TTL_SECONDS

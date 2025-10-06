@@ -1,4 +1,4 @@
-import BookmarkList from "@/components/BookmarkList";
+import BookmarkList from "app/bookmarks/ui/BookmarkList";
 import TitleSection from "@/components/TitleSection";
 
 export default async function Bookmarks() {

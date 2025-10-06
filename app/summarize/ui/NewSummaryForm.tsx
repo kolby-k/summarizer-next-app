@@ -2,13 +2,10 @@
 "use client";
 
 import { useActionState, useEffect, useRef } from "react";
-import {
-  summarizeAction,
-  type SummaryFormState,
-} from "../../app/summarize/actions";
+import { summarizeAction, type SummaryFormState } from "../actions";
 import { useFormStatus } from "react-dom";
-import { useSummaries } from "../context/SummarizeContext";
-import Loader from "./Loader";
+import { useSummaries } from "../../../src/context/SummarizeContext";
+import Loader from "../../../src/components/Loader";
 
 function SubmitButton() {
   const { pending } = useFormStatus();

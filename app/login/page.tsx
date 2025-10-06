@@ -1,10 +1,12 @@
 "use client";
 
-import LoginForm from "@/components/LoginForm";
+import LoginForm from "./ui/LoginForm";
 import TitleSection from "@/components/TitleSection";
 import { useSession } from "@/context/SessionContext";
 import { useRouter } from "next/navigation";
 import { useLayoutEffect } from "react";
+import styles from "./login.module.css";
+import CustomLink from "@/components/CustomLink";
 
 export default function Login() {
   const router = useRouter();
@@ -20,13 +22,16 @@ export default function Login() {
   if (session) return null;
 
   return (
-    <div className="page bg-texture-dim bg-texture">
-      <TitleSection
-        title="Login"
-        subTitle="Sign in to continue"
-        actionButton={{ label: "Back", path: "/" }}
-        opts={{ smallTitle: true }}
-      />
+    <div
+      className={`${styles.page} ${styles.bgTexture} ${styles.bgTextureDim}`}
+    >
+      <div className={styles.header}>
+        <span className={styles.backLink}>
+          <CustomLink path="/" label="Back" type="link" />
+        </span>
+        <h3>Login</h3>
+        <h4>Sign in to continue</h4>
+      </div>
       <LoginForm />
     </div>
   );

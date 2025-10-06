@@ -1,7 +1,7 @@
 "use client";
 
-import { useSummaries } from "../context/SummarizeContext";
-import SummaryCard from "./SummaryCard";
+import { useSummaries } from "../../../src/context/SummarizeContext";
+import SummaryCard from "../../../src/components/SummaryCard";
 
 function BookmarkList() {
   const { bookmarks } = useSummaries();
