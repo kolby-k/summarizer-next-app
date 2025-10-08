@@ -59,9 +59,10 @@ function LoginForm({}) {
           />
           <CustomButton
             title="Login"
-            type="primary"
+            variant="primary"
             disabled={isPending}
             disabledText="Loading.."
+            type="submit"
           />
         </form>
       </div>

@@ -1,19 +1,19 @@
 import NewSummaryForm from "app/summarize/ui/NewSummaryForm";
-import SessionInfo from "@/components/SessionInfo";
+import SessionInfo from "app/summarize/ui/SessionInfo";
 import TitleSection from "@/components/TitleSection";
 import CurrentSummary from "./ui/CurrentSummary";
+import styles from "./summarize.module.css";
 
 export default function Summarize() {
   return (
-    <div className="page bg-texture bg-texture-dim">
+    <div className={styles.page}>
       <TitleSection
         title="Summarize Any Article"
         subTitle="Get to the main ideas in seconds"
         actionButton={{ path: "/bookmarks", label: "Bookmarks" }}
-        opts={{ smallTitle: true }}
       />
-      <NewSummaryForm />
 
+      <NewSummaryForm />
       <CurrentSummary />
 
       <SessionInfo />

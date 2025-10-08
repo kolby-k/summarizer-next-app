@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export type LinkTypes =
+export type Linkvariants =
   | "primary"
   | "secondary"
   | "warning"
@@ -10,17 +10,17 @@ export type LinkTypes =
 type CustomLinkProps = {
   path: string;
   label: string;
-  type: LinkTypes;
+  variant: Linkvariants;
 };
 
-function CustomLink({ path, label, type }: CustomLinkProps) {
+function CustomLink({ path, label, variant }: CustomLinkProps) {
   const baseStyle =
-    type === "link"
-      ? "cursor-pointer px-4 py-3 font-semibold w-full h-full font-[1.1rem]"
-      : "cursor-pointer px-4 py-3 border-1 font-semibold rounded-sm w-full h-full font-[1.1rem]";
+    variant === "link"
+      ? "cursor-pointer px-4 py-3 font-semibold w-full h-full font-[1.1rem] z-100"
+      : "cursor-pointer px-4 py-3 border-1 font-semibold rounded-sm w-full h-full font-[1.1rem] z-100";
 
   let linkStyle;
-  switch (type) {
+  switch (variant) {
     case "primary":
       linkStyle = `
       bg-(--primary-light) border-(--primary) 

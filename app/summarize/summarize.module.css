@@ -1,0 +1,57 @@
+.page {
+  background-color: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  justify-content: space-between;
+  padding: 2rem 1rem;
+
+  /* border: 1px solid yellow; */
+}
+
+.summaryForm {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  min-width: 350px;
+
+  /* border: 1px solid green; */
+}
+
+.summaryForm input {
+  max-width: 500px;
+}
+
+.currentSummaryWrapper {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+
+  /* border: 1px solid whitesmoke; */
+}
+
+.sessionInfoWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 4rem auto 1rem auto;
+  font-size: 0.9rem;
+  font-weight: 400;
+  width: 200px;
+}
+
+.sessionInfoWrapper > button {
+  height: 40px;
+  width: 180px;
+  font-size: 1rem;
+  padding: 0;
+}

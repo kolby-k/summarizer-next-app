@@ -1,7 +1,6 @@
 "use client";
 
 import LoginForm from "./ui/LoginForm";
-import TitleSection from "@/components/TitleSection";
 import { useSession } from "@/context/SessionContext";
 import { useRouter } from "next/navigation";
 import { useLayoutEffect } from "react";
@@ -27,7 +26,7 @@ export default function Login() {
     >
       <div className={styles.header}>
         <span className={styles.backLink}>
-          <CustomLink path="/" label="Back" type="link" />
+          <CustomLink path="/" label="Back" variant="link" />
         </span>
         <h3>Login</h3>
         <h4>Sign in to continue</h4>

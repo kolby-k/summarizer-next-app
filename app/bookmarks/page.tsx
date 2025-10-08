@@ -8,7 +8,6 @@ export default async function Bookmarks() {
         title="Your Saved Summaries"
         subTitle="Keep track of your summarized articles in one place."
         actionButton={{ path: "/summarize", label: "Back" }}
-        opts={{ smallTitle: true }}
       />
       <BookmarkList />
     </div>

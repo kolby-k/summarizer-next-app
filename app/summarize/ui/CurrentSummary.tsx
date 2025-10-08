@@ -1,14 +1,15 @@
 "use client";
 import { useSummaries } from "@/context/SummarizeContext";
 import SummaryCard from "@/components/SummaryCard";
+import styles from "../summarize.module.css";
 
 function CurrentSummary() {
   const { currentSummary } = useSummaries();
 
-  if (!currentSummary) return <div className="spacer"></div>;
+  if (!currentSummary) return null;
 
   return (
-    <div className="pt-6 mx-auto h-[650px]">
+    <div className={styles.currentSummaryWrapper}>
       {currentSummary && <SummaryCard data={currentSummary} />}
     </div>
   );

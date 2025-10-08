@@ -96,11 +96,38 @@ a {
   padding: 0.5rem;
   cursor: pointer;
   background-color: transparent;
+  z-index: 100;
 }
 .logo img {
-  min-width: 50px;
+  min-width: 60px;
   height: auto;
   margin: 0 auto;
+}
+
+.title-section {
+  display: flex;
+  justify-content: center;
+  max-height: 25vh;
+  padding: 1rem;
+  position: relative;
+  text-align: center;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 3rem;
+  margin: 0 auto;
+}
+
+.title-link-button {
+  display: block;
+}
+
+.left-shift {
+  position: absolute;
+  left: 2rem;
+  top: 2rem;
 }
 
 /* REVIEW BELOW */
@@ -214,19 +241,10 @@ a {
   max-height: 50%;
   overflow: hidden;
 }
-
 .text-container > p {
   height: 90%;
   overflow: hidden;
 }
-
-.title-container {
-  padding: 2rem 3rem;
-  position: relative;
-  min-width: max(100%, 200px);
-  margin: auto;
-}
-
 .demo-card {
   color: var(--text);
   max-width: 750px;
@@ -412,4 +430,20 @@ li {
   .logo {
     margin: 0;
   }
+
+  .title-section > a {
+    display: none;
+  }
+
+  .title-section {
+    flex-direction: column;
+    height: 30vh;
+  }
+
+  .left-shift {
+    position: static;
+  }
+}
+
+@media only screen and (max-width: 450px) {
 }

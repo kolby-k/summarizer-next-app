@@ -83,7 +83,10 @@ async function openAIFetch({
     }
 
     data = await resp.json();
-  } catch (error) {
+  } catch (e) {
+    if (process.env.NODE_ENV === "development") {
+      console.error(e);
+    }
     throw new Error("Error: Something went wrong...");
   }
 
