@@ -7,7 +7,7 @@
   width: 100%;
   justify-content: space-between;
   padding: 2rem 1rem;
-
+  min-width: 380px;
   /* border: 1px solid yellow; */
 }
 
@@ -19,13 +19,14 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  min-width: 350px;
+  min-width: 380px;
 
   /* border: 1px solid green; */
 }
 
 .summaryForm input {
-  max-width: 500px;
+  max-width: 750px;
+  margin-bottom: 0.5rem;
 }
 
 .currentSummaryWrapper {
@@ -33,7 +34,8 @@
   flex: 1;
   justify-content: center;
   padding: 2rem 1rem;
-  margin-bottom: 2rem;
+
+  min-width: 380px;
 
   /* border: 1px solid whitesmoke; */
 }
@@ -54,4 +56,10 @@
   width: 180px;
   font-size: 1rem;
   padding: 0;
+}
+
+@media only screen and (max-width: 790px) {
+  .currentSummaryWrapper {
+    padding: 1rem 0.5rem;
+  }
 }

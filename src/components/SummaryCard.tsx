@@ -1,6 +1,7 @@
 "use client";
 
 import { Summary, useSummaries } from "../context/SummarizeContext";
+import CustomButton from "./CustomButton";
 
 export interface SummaryCardProps {
   data: Summary;
@@ -27,9 +28,14 @@ function SummaryCard({ data }: SummaryCardProps) {
         <h6>Summary</h6>
         <p className="text-left">{summary}</p>
       </div>
-      <button className="button-two" onClick={toggleBookmark}>
-        {isBookmarked ? "Remove Bookmark" : "Bookmark"}
-      </button>
+      <div className="w-full h-[50px]">
+        <CustomButton
+          title={isBookmarked ? "Remove Bookmark" : "Bookmark"}
+          onClick={toggleBookmark}
+          variant={isBookmarked ? "secondary" : "primary"}
+          styles="max-w-1/2"
+        />
+      </div>
     </div>
   );
 }

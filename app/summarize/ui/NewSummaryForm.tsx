@@ -4,7 +4,6 @@
 import { useActionState, useEffect, useRef } from "react";
 import { summarizeAction, type SummaryFormState } from "../actions";
 import { useSummaries } from "../../../src/context/SummarizeContext";
-import Loader from "../../../src/components/Loader";
 import CustomButton from "@/components/CustomButton";
 import styles from "../summarize.module.css";
 
@@ -28,11 +27,19 @@ export default function NewSummaryForm() {
     }
   }, [state, setCurrentSummary]);
 
+  if (isPending) {
+    return (
+      <div className="loader-animated-container">
+        <div className="loader-animated"></div>
+        <p>Loading ..</p>
+      </div>
+    );
+  }
+
   return (
     <>
-      <Loader isLoading={isPending} />
       <form className={styles.summaryForm} ref={formRef} action={formAction}>
-        <label className="text-lg font-semibold" htmlFor="url">
+        <label className="text-xl font-medium" htmlFor="url">
           Enter a Website URL
         </label>
         <input
