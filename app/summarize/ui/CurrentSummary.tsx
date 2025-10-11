@@ -2,17 +2,33 @@
 import { useSummaries } from "@/context/SummarizeContext";
 import SummaryCard from "@/components/SummaryCard";
 import styles from "../summarize.module.css";
+import Modal from "@/components/Modal";
+import { useState } from "react";
+import ModalSummary from "@/components/ModalSummary";
 
 function CurrentSummary() {
   const { currentSummary } = useSummaries();
+  const [modalVisible, setModalVisible] = useState<boolean>(true);
   // console.log(currentSummary);
-
-  if (!currentSummary) return null;
+  const data = currentSummary;
+  if (!data) return null;
 
   return (
-    <div className={styles.currentSummaryWrapper}>
-      {currentSummary && <SummaryCard data={currentSummary} />}
-    </div>
+    <>
+      {modalVisible && (
+        <Modal>
+          <ModalSummary data={data} onClose={() => setModalVisible(false)} />
+        </Modal>
+      )}
+      <div className={styles.currentSummaryWrapper}>
+        {data && (
+          <SummaryCard
+            data={data}
+            handleShowModal={() => setModalVisible(true)}
+          />
+        )}
+      </div>
+    </>
   );
 }
 

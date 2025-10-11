@@ -166,7 +166,7 @@ input {
   border-radius: 0.75rem;
   width: 100%;
   outline: none;
-  border: 1px solid var(--border-card);
+  border: var(--border-card);
   color: var(--text);
 }
 
@@ -229,6 +229,192 @@ input:focus {
   scrollbar-color: var(--bg-light) var(--bg);
   scrollbar-width: thin;
 }
+
+/* MODAL */
+.modal-wrapper {
+  position: fixed; /* use fixed so it stays put on scroll */
+  inset: 0;
+  z-index: 1000;
+  display: grid; /* center via grid */
+  place-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.modal {
+  position: relative; /* no absolute needed */
+  width: clamp(320px, 90svw, 900px);
+  max-height: 85dvh; /* scroll inside on small viewports */
+  overflow: auto;
+  background: var(--gradient);
+  border: var(--border-card);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.close-modal-icon {
+  font-size: 2rem;
+  color: var(--text-muted);
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  margin: 0.5rem;
+  cursor: pointer;
+}
+
+.summary-modal-container {
+  display: grid;
+  grid-template-rows: 0.5fr 50px 1.5fr;
+  grid-template-areas:
+    "top"
+    "middle"
+    "bottom";
+  min-height: 500px;
+}
+.summary-top-row {
+  grid-area: top;
+  text-align: center;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.summary-top-row h3 {
+  font-size: 2.15rem;
+}
+
+.summary-top-row p {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.summary-top-row a {
+  color: var(--primary);
+  font-size: 0.9rem;
+}
+
+.active-section-buttons {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0.5rem 0;
+  grid-area: middle;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.active-section-buttons h6 {
+  text-align: center;
+  margin: 0.2rem;
+  font-size: 1.25rem;
+  color: var(--text-muted);
+}
+
+.section-toggle {
+  background: var(--primary-dark);
+  border: 1px solid var(--primary);
+  padding: 0.1rem 0.5rem;
+  border-radius: 1rem 1rem 0 0;
+  cursor: pointer;
+}
+
+.active-toggle {
+  background: var(--primary);
+  border: 1px solid var(--highlight);
+}
+.active-toggle h6 {
+  color: var(--text);
+}
+
+.modal-active-section {
+  grid-area: bottom;
+  padding: 1rem;
+  display: flex;
+  flex: 1;
+}
+
+/* END OF MODAL */
+
+/* SUMMARY CARD */
+/* a reusable 3-line clamp */
+.clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+/* keep the mask only if you want a fade instead of an ellipsis */
+.clamp-fade {
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(#000 70%, transparent);
+  mask-image: linear-gradient(#000 70%, transparent);
+}
+
+/* layout as you had */
+.summary-card-container {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "top top"
+    "left right";
+}
+
+.grid-col-cell {
+  height: 350px;
+  overflow: hidden;
+  padding: 1rem;
+}
+.grid-col-cell h6 {
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.summary-column {
+  grid-area: left;
+  border-right: 1px solid var(--border);
+}
+.bias-column {
+  grid-area: right;
+}
+
+.summary-meta-row {
+  grid-area: top;
+  text-align: center;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.summary-meta-row h3 {
+  font-size: 2.15rem;
+}
+
+.summary-meta-row p {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.summary-meta-row a {
+  color: var(--primary);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .summary-card-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "top"
+      "left"
+      "right";
+  }
+}
+
+/* END OF SUMMARY CARD */
 
 @keyframes spin {
   0% {
@@ -346,37 +532,42 @@ h1 {
   font-size: 3.5rem;
   color: var(--text);
   font-weight: 600;
-  line-height: 4rem;
+  line-height: 3.5rem;
 }
 
 h2 {
   font-size: 3rem;
   color: var(--text-secondary);
   font-weight: 500;
+  line-height: 3rem;
 }
 
 h3 {
   font-size: 2.5rem;
   color: var(--text-secondary);
   font-weight: 400;
+  line-height: 2.5rem;
 }
 
 h4 {
   font-size: 1.75rem;
   color: var(--text-muted);
   font-weight: 400;
+  line-height: 1.75rem;
 }
 
 h5 {
   font-size: 1.6rem;
   color: var(--text);
   font-weight: 400;
+  line-height: 1.6rem;
 }
 
 h6 {
   font-size: 1.4rem;
   color: var(--text-secondary);
   font-weight: 400;
+  line-height: 1.4rem;
 }
 
 hr {

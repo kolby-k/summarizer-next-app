@@ -5,9 +5,10 @@ import CustomButton from "./CustomButton";
 
 export interface SummaryCardProps {
   data: Summary;
+  handleShowModal?: () => void;
 }
 
-function SummaryCard({ data }: SummaryCardProps) {
+function SummaryCard({ data, handleShowModal }: SummaryCardProps) {
   const { summary, id, title } = data;
 
   const { bookmarks, addBookmark, removeBookmark } = useSummaries();
@@ -33,6 +34,12 @@ function SummaryCard({ data }: SummaryCardProps) {
           title={isBookmarked ? "Remove Bookmark" : "Bookmark"}
           onClick={toggleBookmark}
           variant={isBookmarked ? "secondary" : "primary"}
+          styles="max-w-1/2"
+        />
+        <CustomButton
+          title="View More"
+          onClick={handleShowModal}
+          variant="primary"
           styles="max-w-1/2"
         />
       </div>
