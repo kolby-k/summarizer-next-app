@@ -7,7 +7,7 @@ import { FaBookmark } from "react-icons/fa6";
 
 export interface SummaryCardProps {
   data: Summary;
-  handleShowModal?: () => void;
+  handleShowModal: (id: string) => void;
 }
 
 function SummaryCard({ data, handleShowModal }: SummaryCardProps) {
@@ -41,7 +41,7 @@ function SummaryCard({ data, handleShowModal }: SummaryCardProps) {
       <div className="summary-buttons">
         <CustomButton
           title="View More"
-          onClick={handleShowModal}
+          onClick={() => handleShowModal(id)}
           variant="primary"
           styles="max-w-2/3"
         />

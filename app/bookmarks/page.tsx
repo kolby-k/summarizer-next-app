@@ -1,15 +1,22 @@
+"use client";
+
 import BookmarkList from "app/bookmarks/ui/BookmarkList";
 import TitleSection from "@/components/TitleSection";
+import styles from "./bookmarks.module.css";
+import { useState } from "react";
+import type { Summary } from "@/context/SummarizeContext";
 
-export default async function Bookmarks() {
+export default function Bookmarks() {
+  const [modalContent, setModalContent] = useState<Summary | null>(null);
+
   return (
-    <div className="page bg-texture">
+    <div className={`${styles.page} ${!!modalContent && styles.modalVisible}`}>
       <TitleSection
-        title="Your Saved Summaries"
-        subTitle="Keep track of your summarized articles in one place."
+        title="Your Bookmarks"
+        subTitle="Review your saved summaries"
         actionButton={{ path: "/summarize", label: "Back" }}
       />
-      <BookmarkList />
+      <BookmarkList modalContent={modalContent} setModal={setModalContent} />
     </div>
   );
 }

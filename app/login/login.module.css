@@ -1,6 +1,6 @@
 .page {
   color: var(--text);
-  height: 100vh;
+  height: 100lvh;
   width: 100%;
   overflow: hidden;
 
@@ -10,7 +10,6 @@
 .header {
   display: flex;
   flex-direction: column;
-  min-width: 350px;
   height: 250px;
   justify-content: center;
   align-items: center;
@@ -30,6 +29,7 @@
   height: 50%;
   justify-content: center;
   padding: 2rem;
+  z-index: 10;
 }
 
 .loginForm {

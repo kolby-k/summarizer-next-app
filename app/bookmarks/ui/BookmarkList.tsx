@@ -1,22 +1,49 @@
 "use client";
 
-import { useSummaries } from "../../../src/context/SummarizeContext";
+import {
+  type Summary,
+  useSummaries,
+} from "../../../src/context/SummarizeContext";
 import SummaryCard from "../../../src/components/SummaryCard";
+import styles from "../bookmarks.module.css";
+import Modal from "@/components/Modal";
+import ModalSummary from "@/components/ModalSummary";
 
-function BookmarkList() {
+type BookmarkListProps = {
+  modalContent: Summary | null;
+  setModal: React.Dispatch<React.SetStateAction<Summary | null>>;
+};
+
+function BookmarkList({ modalContent, setModal }: BookmarkListProps) {
   const { bookmarks } = useSummaries();
 
+  const setModalContent = (summaryId: string) => {
+    const summary = bookmarks.find((bookmark) => summaryId === bookmark.id);
+    return summary ? setModal(summary) : handleCloseModal();
+  };
+
+  const handleCloseModal = () => {
+    setModal(null);
+  };
+
   return (
-    <div className="p-8 flex flex-wrap justify-evenly gap-20 max-w-[1650px] mx-auto">
-      {bookmarks &&
-        bookmarks.map((b) => {
-          return (
-            <div className="item-wraper" key={b.id}>
-              <SummaryCard data={b} />
-            </div>
-          );
-        })}
-    </div>
+    <>
+      {!!modalContent && (
+        <Modal>
+          <ModalSummary data={modalContent} onClose={handleCloseModal} />
+        </Modal>
+      )}
+      <div className={`${styles.bookmarkList}`}>
+        {bookmarks &&
+          bookmarks.map((b) => {
+            return (
+              <div className={styles.summaryWrapper} key={b.id}>
+                <SummaryCard data={b} handleShowModal={setModalContent} />
+              </div>
+            );
+          })}
+      </div>
+    </>
   );
 }
 

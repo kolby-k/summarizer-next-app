@@ -8,7 +8,7 @@ import ModalSummary from "@/components/ModalSummary";
 
 function CurrentSummary() {
   const { currentSummary } = useSummaries();
-  const [modalVisible, setModalVisible] = useState<boolean>(true);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
   // console.log(currentSummary);
   const data = currentSummary;
   if (!data) return null;
