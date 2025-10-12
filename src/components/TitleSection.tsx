@@ -24,7 +24,7 @@ function TitleSection({
     <div className="title-section">
       {!showBackButton && <Logo />}
       <div className="title-container">
-        <h1 className={`small-title`}>{title}</h1>
+        <h1>{title}</h1>
         <h4>{subTitle}</h4>
       </div>
       {path && label && (

@@ -6,8 +6,8 @@ function Hero() {
   return (
     <div className={`${styles.hero}`}>
       <div className={styles.heroText}>
-        <h1>Summarize Any Article Instantly</h1>
-        <h4>Paste a link and get a clear, concise summary in seconds!</h4>
+        <h1>Summarize the Web</h1>
+        <h4>Save time with concise article takeaways</h4>
       </div>
       <div className={styles.heroAction}>
         <Link href={"/login"}>Login</Link>

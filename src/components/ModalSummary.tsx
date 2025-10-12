@@ -20,7 +20,7 @@ function ModalSummary({
       <IoMdClose className="close-modal-icon" onClick={onClose} />
       <div className="summary-top-row">
         <h3>{title}</h3>
-        <a href={url} target="_blank">
+        <a href={url} target="_blank" className="clamp-1">
           {url}
         </a>
         <p>Summarized on: {displayDate}</p>

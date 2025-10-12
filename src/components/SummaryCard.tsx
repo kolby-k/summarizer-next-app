@@ -2,6 +2,8 @@
 
 import { Summary, useSummaries } from "../context/SummarizeContext";
 import CustomButton from "./CustomButton";
+import { FaRegBookmark } from "react-icons/fa6";
+import { FaBookmark } from "react-icons/fa6";
 
 export interface SummaryCardProps {
   data: Summary;
@@ -24,23 +26,24 @@ function SummaryCard({ data, handleShowModal }: SummaryCardProps) {
 
   return (
     <div className="summary-card">
-      <h5>{title}</h5>
+      <span id="bookmark-icon" onClick={toggleBookmark}>
+        {isBookmarked ? (
+          <FaBookmark className="active-bm" />
+        ) : (
+          <FaRegBookmark />
+        )}
+      </span>
+      <h3>{title}</h3>
       <div className="text-container">
-        <h6>Summary</h6>
-        <p className="text-left">{summary}</p>
+        <h5>Summary</h5>
+        <p className="line-clamp-12 md:line-clamp-8 clamp-fade">{summary}</p>
       </div>
-      <div className="w-full h-[50px]">
-        <CustomButton
-          title={isBookmarked ? "Remove Bookmark" : "Bookmark"}
-          onClick={toggleBookmark}
-          variant={isBookmarked ? "secondary" : "primary"}
-          styles="max-w-1/2"
-        />
+      <div className="summary-buttons">
         <CustomButton
           title="View More"
           onClick={handleShowModal}
           variant="primary"
-          styles="max-w-1/2"
+          styles="max-w-2/3"
         />
       </div>
     </div>
