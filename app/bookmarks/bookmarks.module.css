@@ -1,5 +1,5 @@
 .page {
-  background-color: var(--bg);
+  background: radial-gradient(var(--bg-light), var(--bg) 20%, var(--bg-dark));
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

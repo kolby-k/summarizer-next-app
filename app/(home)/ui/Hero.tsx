@@ -4,14 +4,17 @@ import { LiaArrowDownSolid } from "react-icons/lia";
 
 function Hero() {
   return (
-    <div className={`${styles.hero}`}>
-      <div className={styles.heroText}>
-        <h1>Summarize the Web</h1>
-        <h4>Save time with concise article takeaways</h4>
+    <div className={`${styles.hero} `}>
+      <div className={`${styles.design1}`}>
+        <div className={styles.heroTextContainer}>
+          <h1>Summarize the Web</h1>
+          <h4>Save time with concise article takeaways</h4>
+          <div className={styles.heroAction}>
+            <Link href={"/login"}>Login</Link>
+          </div>
+        </div>
       </div>
-      <div className={styles.heroAction}>
-        <Link href={"/login"}>Login</Link>
-      </div>
+
       <div className={styles.nextSectionLabel}>
         <LiaArrowDownSolid
           size={50}

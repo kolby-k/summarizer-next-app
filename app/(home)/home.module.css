@@ -17,7 +17,20 @@
   position: relative;
   min-width: 350px;
   padding: 1rem;
-  background: linear-gradient(0deg, var(--bg-light) 70%, var(--bg));
+  background: linear-gradient(0deg, var(--bg) 70%);
+  z-index: 20;
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  bottom: -50;
+  left: 0;
+  right: 0;
+  background: linear-gradient(var(--bg), rgba(10, 10, 10, 0.753), transparent);
+  height: 100px;
+  filter: blur(5px);
+  z-index: 1;
 }
 
 .navMenu {
@@ -47,6 +60,7 @@
   padding: 1rem;
   text-align: center;
   margin: auto;
+  z-index: 200;
 }
 
 .loginRedirect:hover {
@@ -55,26 +69,29 @@
 
 .hero {
   display: flex;
-  min-height: 65dvh;
-  flex-direction: column;
+  min-height: 60dvh;
+  text-align: center;
+
   justify-content: center;
   align-items: center;
-  gap: 4rem;
-  text-align: center;
-  position: relative;
-  background: linear-gradient(
-    var(--bg-light) 20%,
-    var(--bg) 70%,
-    var(--bg-dark)
-  );
+  background: linear-gradient(var(--bg) 70%, var(--bg-dark));
   border-radius: 0px;
+  position: relative;
 
   /* border: 2px solid green; */
 }
 
-.heroText {
+.heroTextContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -80%);
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
+  align-self: center;
 
+  gap: 0.25rem;
   /* border: 1px solid lightblue; */
 }
 
@@ -83,6 +100,7 @@
   justify-content: center;
   max-width: 500px;
 
+  margin: 2rem auto;
   /* border: 1px solid lightgreen; */
 }
 
@@ -109,6 +127,7 @@
   transform: translateX(-50%);
   color: var(--text-muted);
   font-weight: 400;
+  z-index: 20;
 }
 
 .howItWorks {
@@ -122,7 +141,18 @@
   padding: 4rem 2rem;
   color: var(--text-muted);
 
+  position: relative;
   /* border: 1px solid salmon; */
+}
+
+.howItWorks::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(rgba(10, 10, 10, 0.964), transparent);
 }
 
 .howItWorks ol {
@@ -250,7 +280,7 @@
     min-height: 70vh;
   }
 
-  .heroText {
+  .heroTextContainer {
     padding: 0.5rem;
   }
 
@@ -263,4 +293,35 @@
     font-size: 1rem;
     width: 100%;
   }
+}
+
+.design1 {
+  position: absolute;
+  background: linear-gradient(
+      transparent 49%,
+      rgba(35, 35, 35, 0.864) 50%,
+      transparent 51%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 49%,
+      rgba(35, 35, 35, 0.864) 50%,
+      transparent 51%
+    );
+  background-size: 100px 100px;
+  background-repeat: repeat;
+  inset: 0;
+  z-index: 1;
+  height: 100%;
+}
+
+.design1::before {
+  content: "";
+  position: absolute;
+  bottom: -10;
+  left: 0;
+  right: 0;
+  background: linear-gradient(0deg, rgba(10, 10, 10, 0.964), transparent);
+  height: 100px;
+  filter: blur(5px);
 }
