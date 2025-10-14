@@ -16,7 +16,7 @@ type CustomLinkProps = {
 function CustomLink({ path, label, variant }: CustomLinkProps) {
   const baseStyle =
     variant === "link"
-      ? "cursor-pointer px-4 py-3 font-semibold w-full h-full font-[1.1rem] z-100"
+      ? "cursor-pointer px-4 py-3 font-semibold w-full h-full font-[1.1rem] z-100 underline"
       : "cursor-pointer px-4 py-3 border-1 font-semibold rounded-sm w-full h-full font-[1.1rem] z-100";
 
   let linkStyle;

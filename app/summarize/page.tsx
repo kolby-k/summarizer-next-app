@@ -8,7 +8,7 @@ export default function Summarize() {
   return (
     <div className={styles.page}>
       <TitleSection
-        title="Summarize Any Article"
+        title="Article Summarizer"
         subTitle="Get to the main ideas in seconds"
         actionButton={{ path: "/bookmarks", label: "Bookmarks" }}
       />

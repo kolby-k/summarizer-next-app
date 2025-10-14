@@ -12,11 +12,6 @@ export default function SessionInfo() {
   const router = useRouter();
   const { session, setSession } = useSession();
 
-  // createdTime -> Unix Epoch MS
-  const display = session
-    ? new Date(session.createdTime).toLocaleTimeString()
-    : null;
-
   const handleLogout = async () => {
     try {
       setLoading(true);
@@ -35,7 +30,7 @@ export default function SessionInfo() {
     }
   };
 
-  if (!session || !display) return null;
+  if (!session) return null;
   return (
     <div className={styles.sessionInfoWrapper}>
       <CustomButton
@@ -46,12 +41,6 @@ export default function SessionInfo() {
         onClick={handleLogout}
         type="button"
       />
-      <p className="mt-1 text-(--text-muted) font-light text-sm">
-        Session started at:{" "}
-        <time dateTime={display} suppressHydrationWarning>
-          {display}
-        </time>
-      </p>
     </div>
   );
 }

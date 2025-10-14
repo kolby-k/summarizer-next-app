@@ -6,7 +6,7 @@
   height: 100dvh;
   justify-content: space-between;
   padding: 2rem 1rem;
-
+  padding-bottom: 0;
   width: 100%;
   overflow: auto;
 
@@ -21,7 +21,6 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-
   /* border: 1px solid green; */
 }
 
@@ -36,7 +35,6 @@
   flex: 1;
   justify-content: center;
   padding: 2rem 1rem;
-
   width: 100%;
 
   /* border: 1px solid whitesmoke; */
@@ -44,13 +42,12 @@
 
 .sessionInfoWrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 4rem auto 1rem auto;
+  align-items: flex-end;
+  justify-content: center;
+  margin: 3rem auto 1rem;
   font-size: 0.9rem;
   font-weight: 400;
-  max-width: 250px;
+  width: 100%;
 }
 
 .sessionInfoWrapper > button {
@@ -63,5 +60,9 @@
 @media only screen and (max-width: 790px) {
   .currentSummaryWrapper {
     padding: 1rem 0.5rem;
+  }
+
+  .sessionInfoWrapper {
+    margin-bottom: 0rem;
   }
 }

@@ -19,6 +19,7 @@
   max-width: 1200px; /* optional: center the whole block */
   gap: 2rem;
 
+  min-height: 80dvh;
   align-self: center;
 }
 

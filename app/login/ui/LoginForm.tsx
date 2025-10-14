@@ -30,9 +30,10 @@ function LoginForm({}) {
     }
   }, [state, setSession]);
 
+  if (isPending) return <Loader isLoading={true} overlay={true} />;
+
   return (
     <>
-      <Loader isLoading={isPending} />
       <div className={styles.formContainer}>
         <form action={formAction} className={styles.loginForm}>
           {state && !state.ok && (

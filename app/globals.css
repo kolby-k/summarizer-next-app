@@ -19,8 +19,10 @@
   --gradient-hover: linear-gradient(0deg, var(--bg), var(--bg-light));
 
   --border-card: 1px solid var(--border);
-  --shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
-  --shadow-light: 0 2px 2px hsla(0 0 70 100%);
+  --shadow: 0px 2px 2px hsla(0, 3%, 68%, 0.07),
+    0px 4px 4px hsla(0, 1%, 50%, 0.15);
+  --shadow-light: 0px 2px 2px hsla(0, 3%, 68%, 0.07),
+    0px 4px 4px hsla(0, 1%, 50%, 0.15);
 
   --primary-dark: oklch(0.4 0.15 220);
   --primary: oklch(0.5 0.15 220);
@@ -43,7 +45,8 @@
   --accent-green: oklch(0.5 0.15 140);
   --accent-green-light: oklch(0.6 0.15 140);
 
-  --transparent: hsla(0 0 10 20%);
+  --transparent: hsla(0, 0%, 10%, 0.2);
+  --grid-design: hsla(0, 0%, 20%, 0.5);
 }
 
 body.light {
@@ -59,15 +62,20 @@ body.light {
   --highlight: hsl(0 0 100);
   --highlight-dark: hsl(0 0 90);
 
+  --shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
+  --shadow-light: 0 2px 2px hsla(0 0 70 100%);
+
   --gradient: linear-gradient(0deg, var(--bg) 95%, var(--bg-light));
   --gradient-hover: linear-gradient(0deg, var(--bg), var(--bg-light));
 
-  --border-card: 1px solid var(--bg);
+  --border-card: 1px solid var(--bg-light);
 
   --btn-bg: var(--primary);
   --btn-bg-hover: var(--primary-light);
   --btn-text: var(--text-inverted);
   --btn-border: 1px solid var(--primary-light);
+
+  --grid-design: hsla(0, 0%, 80%, 0.5);
 }
 
 html,
@@ -82,7 +90,7 @@ body {
 }
 
 body {
-  background: var(--bg);
+  background: var(--bg-dark);
   color: var(--text);
   font-family: var(--font-family-1), monospace, Arial, Helvetica, sans-serif;
 }
@@ -157,6 +165,19 @@ a {
   animation: spin 3s infinite;
 }
 
+.loading-overlay {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 100dvh;
+  overflow: auto;
+  background-color: var(--grid-design);
+  backdrop-filter: blur(5px);
+  inset: 0;
+  z-index: 2000;
+}
+
 input {
   background-color: var(--bg-light);
   font-size: 1.1rem;
@@ -200,10 +221,6 @@ input:focus {
   position: relative;
 }
 
-.summary-top-row {
-  width: 80%;
-}
-
 .summary-card h3 {
   width: 90%;
   margin-top: -10px;
@@ -211,7 +228,7 @@ input:focus {
 
 .summary-card:hover {
   background: var(--gradient-hover);
-  transform: scale(1.02);
+  transform: scale(1.01);
 }
 
 .summary-buttons {
@@ -260,8 +277,8 @@ input:focus {
   position: fixed;
   inset: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(0.2rem);
+  background-color: var(--grid-design);
+  backdrop-filter: blur(5px);
   height: 100%;
   z-index: 100;
   overscroll-behavior: contain;
@@ -305,6 +322,12 @@ input:focus {
   z-index: 1000;
 }
 
+.summary-top-row {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+}
+
 .summary-top-row p {
   color: var(--text-muted);
   font-size: 0.75rem;
@@ -319,12 +342,13 @@ input:focus {
   display: flex;
   justify-content: flex-start;
   padding: 0 1rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--highlight);
 }
 .active-section-buttons h6 {
   text-align: center;
   margin: 0.2rem;
-  color: var(--text-muted);
+  color: var(--text-inverted);
+  font-size: 1.1rem;
 }
 
 .section-toggle {
@@ -337,10 +361,11 @@ input:focus {
 
 .active-toggle {
   background: var(--primary);
-  border: 1px solid var(--highlight);
+  border: 1px solid var(--primary-light);
 }
 .active-toggle h6 {
-  color: var(--text);
+  color: var(--text-inverted);
+  font-weight: 500;
 }
 
 .modal-active-section {

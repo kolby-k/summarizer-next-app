@@ -6,6 +6,7 @@ import { summarizeAction, type SummaryFormState } from "../actions";
 import { useSummaries } from "../../../src/context/SummarizeContext";
 import CustomButton from "@/components/CustomButton";
 import styles from "../summarize.module.css";
+import Loader from "@/components/Loader";
 
 const initialState: SummaryFormState = { ok: false, message: "" };
 
@@ -19,7 +20,6 @@ export default function NewSummaryForm() {
 
   const formRef = useRef<HTMLFormElement>(null);
 
-  // Optional: auto-reset the form on success
   useEffect(() => {
     if (state.ok) {
       setCurrentSummary(state.data);
@@ -28,12 +28,7 @@ export default function NewSummaryForm() {
   }, [state, setCurrentSummary]);
 
   if (isPending) {
-    return (
-      <div className="loader-animated-container">
-        <div className="loader-animated"></div>
-        <p>Loading ..</p>
-      </div>
-    );
+    return <Loader isLoading={true} />;
   }
 
   return (
@@ -60,8 +55,11 @@ export default function NewSummaryForm() {
       </form>
       {/* Errors */}
       {!state.ok && state.message ? (
-        <p role="alert" style={{ color: "crimson", marginTop: 8 }}>
-          {state.message}
+        <p
+          role="alert"
+          className="font-semibold text-(--accent-red-light) text-center text-lg"
+        >
+          Sorry, something went wrong..
         </p>
       ) : null}
     </>

@@ -7,11 +7,12 @@ function Hero() {
     <div className={`${styles.hero} `}>
       <div className={`${styles.design1}`}>
         <div className={styles.heroTextContainer}>
-          <h1>Summarize the Web</h1>
-          <h4>Save time with concise article takeaways</h4>
+          <h1>Summarizer</h1>
+          <h3>Read Less. Know More.</h3>
           <div className={styles.heroAction}>
             <Link href={"/login"}>Login</Link>
           </div>
+          <h5>Save time with concise article summaries</h5>
         </div>
       </div>
 

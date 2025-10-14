@@ -2,7 +2,7 @@ import styles from "../home.module.css";
 
 function HowItWorks() {
   return (
-    <div className={styles.howItWorks}>
+    <div id="how-it-works" className={styles.howItWorks}>
       <h3>How It Works</h3>
       <ol>
         <li>1. Paste a URL for any article.</li>
