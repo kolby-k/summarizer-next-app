@@ -52,36 +52,39 @@
   --logo-filter: contrast(50%);
 }
 
-body.light {
-  --bg-dark: hsl(0 0 90);
-  --bg: hsl(0 0 95);
-  --bg-light: hsl(0 0 100);
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-dark: hsl(0 0 90);
+    --bg: hsl(0 0 95);
+    --bg-light: hsl(0 0 100);
 
-  --text: hsl(0 0 10);
-  --text-secondary: hsl(0 0 20);
-  --text-muted: hsl(0 0 30);
-  --text-inverted: hsl(0 0 95);
+    --text: hsl(0 0 10);
+    --text-secondary: hsl(0 0 20);
+    --text-muted: hsl(0 0 30);
+    --text-inverted: hsl(0 0 95);
 
-  --highlight: hsl(0 0 100);
-  --highlight-dark: hsl(0 0 90);
+    --highlight: hsl(0 0 100);
+    --highlight-dark: hsl(0 0 90);
 
-  --shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
-  --shadow-light: 0 2px 2px hsla(0 0 70 100%);
+    --shadow: 0px 2px 2px hsla(0, 0%, 0%, 0.07),
+      0px 4px 4px hsla(0, 0%, 0%, 0.15);
+    --shadow-light: 0 2px 2px hsla(0 0 70 100%);
 
-  --gradient: linear-gradient(0deg, var(--bg) 95%, var(--bg-light));
-  --gradient-hover: linear-gradient(0deg, var(--bg), var(--bg-light));
+    --gradient: linear-gradient(0deg, var(--bg) 95%, var(--bg-light));
+    --gradient-hover: linear-gradient(0deg, var(--bg), var(--bg-light));
 
-  --border-card: 1px solid var(--bg-light);
+    --border-card: 1px solid var(--bg-light);
 
-  --btn-bg: var(--primary);
-  --btn-bg-hover: var(--primary-light);
-  --btn-text: var(--text-inverted);
-  --btn-border: 1px solid var(--primary-light);
+    --btn-bg: var(--primary);
+    --btn-bg-hover: var(--primary-light);
+    --btn-text: var(--text-inverted);
+    --btn-border: 1px solid var(--primary-light);
 
-  --grid-design: hsla(0, 0%, 80%, 0.5);
+    --grid-design: hsla(0, 0%, 80%, 0.5);
 
-  --logo-display: none;
-  --logo-filter: invert(1) brightness(0.5) contrast(0.8);
+    --logo-display: none;
+    --logo-filter: invert(1) brightness(0.5) contrast(0.8);
+  }
 }
 
 html,
