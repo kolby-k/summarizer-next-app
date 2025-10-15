@@ -5,7 +5,7 @@ import LOGO from "../../public/logo.png";
 function Logo({ styles }: { styles?: string }) {
   return (
     <Link href={"/"} className={`logo ${styles}`}>
-      <Image src={LOGO} alt="Summarizer Logo" width={50} height={50} />
+      <Image src={LOGO} alt="Summarizer Logo" width={50} height={50} priority />
     </Link>
   );
 }

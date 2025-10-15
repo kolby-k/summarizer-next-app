@@ -47,6 +47,9 @@
 
   --transparent: hsla(0, 0%, 10%, 0.2);
   --grid-design: hsla(0, 0%, 20%, 0.5);
+
+  --logo-display: block;
+  --logo-filter: contrast(50%);
 }
 
 body.light {
@@ -76,6 +79,9 @@ body.light {
   --btn-border: 1px solid var(--primary-light);
 
   --grid-design: hsla(0, 0%, 80%, 0.5);
+
+  --logo-display: none;
+  --logo-filter: invert(1) brightness(0.5) contrast(0.8);
 }
 
 html,
@@ -97,19 +103,31 @@ body {
 
 a {
   display: block;
+  cursor: pointer;
 }
 
 .logo {
-  margin: 1rem;
-  padding: 0.5rem;
-  cursor: pointer;
-  background-color: transparent;
-  z-index: 100;
+  position: relative;
+  display: inline-block;
+  padding: 1rem;
+  height: 100px;
 }
+
 .logo img {
-  min-width: 60px;
+  width: 50px;
   height: auto;
-  margin: 0 auto;
+  margin: auto;
+  filter: var(--logo-filter);
+}
+
+.logo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--text-muted);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  display: var(--logo-display);
 }
 
 .title-section {
