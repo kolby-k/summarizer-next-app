@@ -9,6 +9,7 @@
   --text: hsl(0 0 90);
   --text-secondary: hsl(0 0 80);
   --text-muted: hsl(0 0 70);
+  --text-neutral: hsl(0 0 50);
   --text-inverted: hsl(0 0 5);
 
   --border: hsl(0 0 30);

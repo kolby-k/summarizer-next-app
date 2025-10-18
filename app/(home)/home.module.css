@@ -200,25 +200,34 @@
   gap: 2rem;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
   font-weight: 400;
   color: var(--text-secondary);
+  min-width: 350px;
+  padding: 0 10px;
 }
 
 .footerMenu a:hover {
   color: var(--text);
-  text-align: center;
 }
 
 .logoContainer {
-  width: 200px;
+  display: flex;
+  min-width: 100px;
+  justify-content: center;
 }
 
 .demoDisclaimer {
+  display: inline;
   text-align: center;
   font-size: 0.9rem;
-  color: var(--text-muted);
-  width: 200px;
+  color: var(--text-neutral);
+  max-width: 200px;
+  min-width: 150px;
+}
+
+.demoDisclaimer a {
+  display: inline;
+  color: var(--primary);
 }
 
 .downArrow {
@@ -273,6 +282,7 @@
     flex-direction: column;
     flex: 1;
     padding: 0.5rem 1rem;
+    gap: 1rem;
   }
 
   .heroTextContainer {
@@ -287,6 +297,10 @@
   .heroTextContainer h5 {
     width: 75%;
     margin: auto;
+  }
+
+  .demoDisclaimer {
+    padding-bottom: 1rem;
   }
 }
 

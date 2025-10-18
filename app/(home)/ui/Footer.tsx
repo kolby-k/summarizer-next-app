@@ -14,7 +14,10 @@ function Footer() {
         <Link href={"/login"}>Get Started</Link>
       </div>
       <div className={styles.demoDisclaimer}>
-        Note: This website is a demo project.
+        Note: This website is a demo project made by{" "}
+        <a href="https://kolbyk.ca/" target="_blank">
+          Kolby Klassen
+        </a>
       </div>
     </div>
   );
